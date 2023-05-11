@@ -1,0 +1,23 @@
+---
+import HeaderLink from "./HeaderLink.astro";
+interface Props {
+  links: {
+    link: string;
+    content: string;
+  }[];
+}
+const { links } = Astro.props;
+---
+
+<nav class="flex-none">
+  <ul class="menu menu-horizontal px-1">
+    {
+      links.map(({ link, content }) => (
+        <li>
+          <HeaderLink href={link}>{content}</HeaderLink>
+        </li>
+      ))
+    }
+    
+  </ul>
+</nav>

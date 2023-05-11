@@ -1,0 +1,56 @@
+---
+import HeaderLink from "./HeaderLink.astro";
+import NavMenu from "./NavMenu.astro";
+import Icon from "./Icon.astro";
+import { SITE_TITLE, HEADER_LINKS } from "../consts";
+---
+
+<header class="navbar bg-base-300 px-8 mb-5">
+  <div class="navbar-start">
+    <a href="/"
+      ><h2 class="text-2xl font-extrabold hover:text-accent-content">
+        {SITE_TITLE}
+      </h2></a
+    >
+  </div>
+
+  <div class="navbar-end">
+    <NavMenu links={HEADER_LINKS} />
+    <div class="switch-container border-l pl-3 border-neutral-content">
+      <button
+        class="btn btn-circle btn-outline btn-sm"
+        type="button"
+        id="theme-switch"
+        title="Dark/Light Mode Switch"
+      >
+        <Icon icon="sun" />
+      </button>
+    </div>
+  </div>
+</header>
+
+<script>
+  let theme = "light";
+  let htmlEl = document.querySelector("html");
+
+  if (
+    localStorage.theme === "dark" ||
+    (!("theme" in localStorage) &&
+      window.matchMedia("(prefers-color-scheme:dark)").matches)
+  ) {
+    htmlEl.dataset.theme = "dark";
+    theme = "dark";
+  } else {
+    htmlEl.dataset.theme = "light";
+    theme = "light";
+  }
+  function handleThemeSwitch() {
+    theme = theme === "light" ? "dark" : "light";
+    htmlEl.dataset.theme = theme;
+    localStorage.theme = theme;
+  }
+
+  document
+    .getElementById("theme-switch")
+    .addEventListener("click", handleThemeSwitch);
+</script>

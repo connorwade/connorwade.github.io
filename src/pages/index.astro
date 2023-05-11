@@ -1,0 +1,32 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ArticleCard from "../components/ArticleCard.astro";
+import { getCollection } from "astro:content";
+import Icon from "../components/Icon.astro";
+
+const posts = (await getCollection("blog")).sort(
+  (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
+);
+---
+
+<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+  <main>
+    <h3 class="text-lg text-center">Engineer, Software Developer</h3>
+    <div class="links flex justify-center flex-row mt-3">
+      <a href="https://github.com/connorwade" title="My Github"
+        ><Icon icon="github" /></a
+      >
+    </div>
+    <div class="post-list flex flex-col items-center">
+      {
+        posts.map((post) => {
+          return <ArticleCard postData={post.data} postSlug={post.slug} />;
+        })
+      }
+    </div>
+  </main>
+</BaseLayout>
