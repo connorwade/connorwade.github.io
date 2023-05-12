@@ -13,7 +13,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 
 <BaseLayout title={title} description={description}>
   <main class="flex justify-center">
-    <article class="prose lg:prose-lg p-8">
+    <article class="prose lg:prose-lg p-8 w-screen">
       {heroImage && <img width={720} height={360} src={heroImage} alt="" />}
       <h1 class="text-center">{title}</h1>
       <FormattedDate date={pubDate} />

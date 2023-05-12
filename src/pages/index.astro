@@ -7,10 +7,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import ArticleCard from "../components/ArticleCard.astro";
 import { getCollection } from "astro:content";
 import Icon from "../components/Icon.astro";
+import { getBlogs } from "../utils";
 
-const posts = (await getCollection("blog")).sort(
-  (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
-);
+const posts = await getBlogs();
 ---
 
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
