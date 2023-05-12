@@ -295,7 +295,7 @@ This is the very page that you are looking at. Instead of dealing with styling, 
 
 ## Deployment
 
-Deployment was the easiest part of this whole process. I just followed Astro's [guide on deploying to github pages](https://docs.astro.build/en/guides/deploy/github/). The guide was simple and included everything I needed to know. And most importantly, it actually worked with hacking. It's always great to work with documentation that is being updated and cared about. 
+Deployment was the easiest part of this whole process. I just followed Astro's [guide on deploying to github pages](https://docs.astro.build/en/guides/deploy/github/). The guide was simple and included everything I needed to know. And most importantly, it actually worked without hacking. It's always great to work with documentation that is being updated and cared about. 
 
 ## Outcomes
 
