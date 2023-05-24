@@ -7,22 +7,36 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import ArticleCard from "../components/ArticleCard.astro";
 import { getCollection } from "astro:content";
 import Icon from "../components/Icon.astro";
-import { getBlogs } from "../utils";
+import { getBlogs, sortBlogs } from "../utils";
 
 const posts = await getBlogs();
+const sortedPosts = sortBlogs(posts);
 ---
 
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
   <main>
-    <h3 class="text-lg text-center">Engineer, Software Developer</h3>
-    <div class="links flex justify-center flex-row mt-3">
-      <a href="https://github.com/connorwade" title="My Github"
-        ><Icon icon="github" /></a
-      >
-    </div>
+    <section class="flex flex-col items-center justify-center mt-10 mb-4">
+      <div class="avatar flex justify-center my-5">
+        <div class="w-32 rounded-full">
+          <img src="/good_enough2.png" alt="A headshot of Connor Wade" />
+        </div>
+      </div>
+      <h3 class="text-lg text-center">Engineer, Software Developer</h3>
+      <p class="text-base text-center my-5 lg:w-1/3 md:w-2/3 w-screen">
+        I am a polygot software developer. I work with JavaScript, TypeScript,
+        Go, and Python on a daily basis. I like to write about whatever new
+        thing catches my attention at the moment.
+      </p>
+      <div class="links flex justify-center flex-row">
+        <a href="https://github.com/connorwade" title="My Github"
+          ><Icon icon="github" /></a
+        >
+      </div>
+    </section>
+
     <div class="post-list flex flex-col items-center">
       {
-        posts.map((post) => {
+        sortedPosts.map((post) => {
           return <ArticleCard postData={post.data} postSlug={post.slug} />;
         })
       }

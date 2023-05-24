@@ -6,9 +6,10 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
 import { getCollection } from "astro:content";
 import FormattedDate from "../../components/FormattedDate.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { getBlogs } from "../../utils";
+import { getBlogs, sortBlogs } from "../../utils";
 
 const posts = await getBlogs();
+const sortedPosts = sortBlogs(posts);
 ---
 
 <!DOCTYPE html>
@@ -38,7 +39,7 @@ const posts = await getBlogs();
       <section>
         <ul>
           {
-            posts.map((post) => (
+            sortedPosts.map((post) => (
               <li>
                 <FormattedDate date={post.data.pubDate} />
                 <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
