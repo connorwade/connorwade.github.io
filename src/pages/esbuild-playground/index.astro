@@ -1,0 +1,82 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout>
+  <main class="p-8">
+    <h1 class="text-4xl font-bold">esbuild Playground - Beta</h1>
+    <p>This is an example of esbuild WASM transforming code in the browser</p>
+    <div class="form-control">
+      <label for="opt-loader" class="label"
+        ><span class="label-text">Loader</span></label
+      >
+      <select class="select select-bordered" name="opt-loader" id="opt-loader">
+        <option value="js">JavaScript</option>
+        <option value="ts">TypeScript</option>
+        <option value="css">CSS</option>
+      </select>
+
+      <label for="opt-format" class="label">Format</label><select
+        name="opt-format"
+        id="opt-format"
+        class="select select-bordered"
+      >
+        <option value="iife"
+          >Immediately-invoked function expression (iife)</option
+        >
+        <option value="cjs">CommonJS (cjs)</option>
+        <option value="esm" selected>EcmaScript Module (esm)</option>
+      </select>
+
+      <label for="opt-banner" class="label">
+        <span class="label-text">Banner</span>
+      </label>
+      <input
+        class="input input-bordered"
+        type="text"
+        name="opt-banner"
+        id="opt-banner"
+        placeholder="Adds a comment to the top of your output..."
+        autocomplete="false"
+      />
+
+      <label for="opt-footer" class="label">
+        <span class="label-text">Footer</span>
+      </label>
+      <input
+        class="input input-bordered"
+        type="text"
+        name="opt-footer"
+        id="opt-footer"
+        placeholder="Adds a comment to the bottom of your output..."
+        autocomplete="false"
+      />
+
+      <label for="script" class="label"
+        ><span class="label-text">Raw Code</span></label
+      ><textarea
+        name="script"
+        class="textarea textarea-bordered"
+        id="script"
+        cols="30"
+        rows="10"></textarea>
+      <button class="btn btn-primary">Transform</button>
+
+      <code></code>
+    </div>
+
+    <div class="form-control">
+      <label class="label" for="output">
+        <span class="label-text">Output Code</span></label
+      ><textarea
+        name="output"
+        class="textarea textarea-bordered"
+        id="output"
+        cols="30"
+        rows="10"
+        disabled></textarea>
+    </div>
+  </main>
+</BaseLayout>
+
+<script src="../../scripts/esbuild.js"></script>
