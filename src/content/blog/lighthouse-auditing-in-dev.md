@@ -6,9 +6,11 @@ heroImage: "/lighthouse.jpg"
 draft: false
 ---
 
+*The Lighthouse Node API has changed quite a bit since I first wrote this article. Unfortunately, this post probably currently serves as way to see how to do a general integration rather than a new one.*
+
 Lighthouse is a performance testing tool owned by Google for your website. Lighthouse scores have an infamous and well-earned reputation with developers because businesses often over-emphasize the importance of Lighthouse scores on projects. While I 100% agree that Lighthouse is often misused by companies, Lighthouse can provide development teams with valuable insight to optimizing their code base and highlight problems they may not be aware of. Lighthouse can assist with optimizing libraries, optimizing rendering, optimizing assets, ensuring good practice for SEO and ADA, and lots of other little goodies.
 
-To run Lighthouse, the typical process is to go to the page on a chromium based browser and run Lighthouse from the devtools tray. This is  slow and ineffective if you need to audit a lot of pages or need to continuously monitor performance scores for development. In this tutorial, I'm going to show you how to setup a simple Lighthouse audit in your code base that makes things a little more efficient.
+To run Lighthouse, the typical process is to go to the page on a chromium based browser and run Lighthouse from the DevTools tray. This is slow and ineffective if you need to audit a lot of pages or need to continuously monitor performance scores for development. In this tutorial, I'm going to show you how to set up a simple Lighthouse audit in your code base that makes things a little more efficient.
 
 For this tutorial, I'm going to be using Vite (frontend tooling that handles bundling), Sveltekit (an SSR framework), and Playwright (a UI testing library). However, this code should work for any project architecture. I will focus on the process and what each tool does and possible replacements for them.
 
@@ -26,7 +28,7 @@ The project will ask you a few questions about setup. To follow along with me se
 2. Select the demo project for Sveltekit
 3. Enable playwright for testing
 
-Any other option doesn't really matter. You can add anything else you'd like. I am using Sveltekit mostly because it comes with a more robust demo than other projects. This makes it so we don't have to create a bunch of pages from scratch to get going with testing. I just want to focus on the integration and not writing client code.
+Any other option doesn't really matter. You can add anything else you'd like. I am using Sveltekit mostly because it comes with a more robust demo than other projects. This makes itso we don't have to create a bunch of pages from scratch to get going with testing. I just want to focus on the integration and not writing client code.
 
 If you're unfamiliar with Vite and Sveltekit, I would recommend running `pnpm dev` just to familiarize yourself with base of the project. It also has a Wordle game in it that's pretty fun. So, go ahead and lose an hour or two playing that.
 
@@ -50,7 +52,7 @@ Anyways, once you have a performance folder, you'll want to add two more files t
 touch lighthouse.js .gitignore
 ```
 
-For your ".gitignore" file for this directory you will want to add the results folder to it.
+For your ".gitignore" file for this directory you will want to add the "results" folder to it.
 
 ```
 #.gitignore
@@ -66,7 +68,7 @@ The lighthouse file is where the magic will really happen.
 In order to run a Lighthouse test from our code, there's a few things we will need to do:
 
 1. Expose a preview of our project build on our localhost.
-2. Start a chromium browser on a port.
+2. Start a Chromium browser on a port.
 3. Use that same port to run a Lighthouse test.
 
 To accomplish that with our current project setup, here's what we need to do:
@@ -164,7 +166,7 @@ If you wanted to add in the build script before running the performance auditor,
 ...
 ```
 
-I prefer to keep the preview in my script, but not every build system allows that like Vite does. You may even need to make a custom node server to serve a local distributable or use an npm package that serves local files for some frameworks. 
+I prefer to keep the preview in my script, but not every build system allows that like Vite does. You may even need to make a custom node server to serve a local build or use an npm package that serves local files for some frameworks. 
 
 Now you should be able to run the script simply with:
 
