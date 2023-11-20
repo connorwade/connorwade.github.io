@@ -118,11 +118,12 @@ Another annoying thing about routing is authorization. With SSR, it's actually q
 
 Here is a simple summary of what we've talked about:
 
-| Type   | Build                                          | Content Injection                             | First Paint                                | First Interaction             | Routing                                             |
-| ------ | ---------------------------------------------- | --------------------------------------------- | ------------------------------------------ | ----------------------------- | --------------------------------------------------- |
-| SSR    | Depends on language, on-demand can be an issue | Usually faster than CSR                       | Usually faster than CSR                    | Usually slower than CSR       | Usually slower than CSR                             |
-| CSR    | Bundling JS can be problematic                 | Usually has slow content due to browser fetch | Pretty fast, but not faster than pure HTML | Faster than most alternatives | Usually quite fast                                  |
-| Static | Usually really simple                          | Content can be handled on build               | Usually faster than CSR                    | Usually slower than CSR       | Usually slower than CSR, but barely faster than SSR |
+| Feature           | CSR                                 | SSR                                                   | Static                      |
+| ----------------- | ----------------------------------- | ----------------------------------------------------- | --------------------------- |
+| Build             | Bundling JS can be challenging      | Depends on language, on-demand can be an issue        | Usually easy                |
+| Content Injection | Slow content due to browser fetch   | Usually faster than CSR                               | Content is handled at build |
+| First Paint       | Fast, but not better than pure HTML | Somewhat Pure HTML                                    | Pure HTML                   |
+| Interaction       | Interactivity is set at render      | Components might be rendered before being interactive | See SSR                     |
 
 As you can see, client-side rendering does have issues, but it really shines for interactivity and apps where UI is reused a lot. SSR works really well, but tends to have issues if you rely a lot on the server to make millions of variations to pages and have constantly changing data. Static works really well, however, it can't have dynamic of content by definition unless you do it in the browser and have a data broker.
 

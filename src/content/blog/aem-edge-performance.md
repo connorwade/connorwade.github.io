@@ -1,9 +1,9 @@
 ---
-title: 'Rewriting AEM Edge Delivery'
-heroImage: '/typescript.jpg'
+title: "Rewriting AEM Edge Delivery"
+heroImage: "/typescript.jpg"
 description: "Exploring Performance Client-Side Performance By Rewriting AEM Edge"
 pubDate: "November 4 2023"
-draft: false
+draft: true
 ---
 
 ## What is AEM Edge Delivery?
@@ -18,7 +18,7 @@ Fast forward to this last week as Adobe has been beating the marketing drum on A
 
 ## How can you define performance anyways?
 
-Web performance is a tricky thing. There is of course Lighthouse, but while Lighthouse does give a score, I think it is very wrong to use this as a real metric to show that your site is good. Rather, Lighthouse is a diagnostic tool to tell you when something is wrong. If you attempt to game Lighthouse, the only thing you are doing is shooting yourself in the foot. Lighthouse is there to **cough cough** *guide* you. Anyways, Lighthouse performance scores are a summation of a number of diagnostics about how your page loads and how it functions. Some of the biggest items are things like:
+Web performance is a tricky thing. There is of course Lighthouse, but while Lighthouse does give a score, I think it is very wrong to use this as a real metric to show that your site is good. Rather, Lighthouse is a diagnostic tool to tell you when something is wrong. If you attempt to game Lighthouse, the only thing you are doing is shooting yourself in the foot. Lighthouse is there to **cough cough** _guide_ you. Anyways, Lighthouse performance scores are a summation of a number of diagnostics about how your page loads and how it functions. Some of the biggest items are things like:
 
 1. Largest Contentful Paint (LCP) - Measurement of the render time of the largest image or text block visible within the viewport relative to when the page first started loading.
 2. First Input Delay (FID) - Measurement of the time when the user first interacts with a page to the time when the browser is actually able to begin processing the response to the interaction.
@@ -32,6 +32,3 @@ TL;DR: Load content fast, ensure users can interact with the page, and don't hav
 So the Lighthouse results come in and obviously the performance score is 100. Okay so we're all good then right? Well, let's run some more tests and see what we can find.
 
 Generally one of the first tests I run when inspecting a page for performance after I run Lighthouse is a performance diagnostics test. Open the DevTools and go to Perfomance. Make sure that screenshots are on and run a diagnostic by reloading the page. You should see a number of blocks that make very little sense to you.
-
-
-
