@@ -1,4 +1,5 @@
 import * as esbuild from "../../node_modules/esbuild-wasm/esm/browser.min.js";
+import wasmURl from "../../node_modules/esbuild-wasm/esbuild.wasm?url";
 
 /**
  * @type {HTMLTextAreaElement}
@@ -12,7 +13,7 @@ const footerInput = document.querySelector("#opt-footer");
 const formatSelect = document.querySelector("#opt-format");
 
 await esbuild.initialize({
-  wasmURL: "./node_modules/esbuild-wasm/esbuild.wasm",
+  wasmURL: wasmURl,
   worker: true,
 });
 
