@@ -9,6 +9,12 @@ type Props = CollectionEntry<"blog">["data"];
 const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 ---
 
+<div class="progress-wrapper w-full flex justify-center sticky top-0">
+  <progress
+    class="progress progress-accent w-full opacity-80"
+    value="100"
+    max="100"></progress>
+</div>
 <BaseLayout title={title} description={description}>
   <main class="flex justify-center">
     <article
@@ -28,4 +34,81 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
       <slot />
     </article>
   </main>
+  <ul
+    class="blog-menu menu bg-base-200 w-full p-0 fixed bottom-0 overflow-hidden"
+  >
+  </ul>
 </BaseLayout>
+
+<script>
+  const trackedItems = [...document.querySelectorAll("article > *")];
+  const progress = document.querySelector("progress")!;
+  const headers = [...document.querySelectorAll("article h1, article h2")];
+  const blogMenu = document.querySelector("ul.blog-menu")!;
+  const state = {
+    prev: trackedItems[0],
+    active: trackedItems[0],
+    activeSection: headers[0],
+    blogMenuOpen: true,
+  };
+
+  for (const header of headers) {
+    const li = document.createElement("li");
+    if (header.matches("h1")) {
+      li.classList.add("bg-accent", "text-accent-content");
+      const btn = document.createElement("button");
+      btn.addEventListener("click", () => {
+        if (state.blogMenuOpen) {
+          blogMenu.classList.replace("bottom-0", "top-[95.5%]");
+        } else {
+          blogMenu.classList.replace("top-[95.5%]", "bottom-0");
+        }
+        state.blogMenuOpen = !state.blogMenuOpen;
+      });
+      window.addEventListener("scroll", () => {
+        if (state.blogMenuOpen) {
+          blogMenu.classList.replace("bottom-0", "top-[95%]");
+          state.blogMenuOpen = !state.blogMenuOpen;
+        }
+      });
+      const h6 = document.createElement("h6");
+      h6.textContent = header.textContent;
+      btn.appendChild(h6);
+      li.appendChild(btn);
+      blogMenu.appendChild(li);
+      continue;
+    }
+    const a = document.createElement("a");
+    a.classList.add("link");
+    a.textContent = header.textContent;
+    a.href = "#" + header.id;
+    li.appendChild(a);
+    blogMenu.appendChild(li);
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) {
+        state.prev = state.active;
+        state.active = entry.target;
+      }
+
+      if (!entry.isIntersecting && entry.target === state.active) {
+        state.active = state.prev;
+      }
+
+      const i = trackedItems.indexOf(state.active);
+      progress.value = ((i + 1) / trackedItems.length) * 100;
+
+      if (headers.includes(state.active)) {
+        state.activeSection = state.active;
+        let menuTitle = document.querySelector(".blog-menu h6")!;
+        menuTitle.textContent = state.activeSection.textContent;
+      }
+    }
+  });
+
+  for (const item of trackedItems) {
+    observer.observe(item);
+  }
+</script>
