@@ -2,7 +2,7 @@
 title: 'Creating My New Blog From "Scratch" in a Few Hours'
 description: "How I used Astro and TailwindCSS to build a responsible, performant, bleeding-edge website in a few hours"
 pubDate: "May 09 2023"
-heroImage: "/placeholder-hero.jpg"
+heroImage: "../../assets/placeholder-hero.jpg"
 ---
 
 Well, I've finally done what I've threatened to do for a while: I've replaced my old blog. And more importantly, I did it in less than 24 hours and with only a few hours of work. In this post, I want to go over what tools I used to do it and how I did it. There's nothing groundbreaking in this post. I just wanted to share how easy things can be in Web Development with the proper setup.
@@ -61,10 +61,10 @@ I boast a lot about being a good coder while being stuck in an engineering manag
 
 First, I had to decide what parts of my blog are important to me and what I needed to launch it. I looked at my old site and made a note of what components and styles I wanted to bring over.
 
-* The simple header with my name as the home link, and a button for switching between dark and light themes. I didn't really care about the navigation items that my old blog had, they were just included with the template I was using. I may bring them back in the future, but for now, I'm fine with not having them.
-* The intro section to myself with social media links on the home page.
-* The blog cards on the front page for displaying post previews.
-* The post pages themselves.
+- The simple header with my name as the home link, and a button for switching between dark and light themes. I didn't really care about the navigation items that my old blog had, they were just included with the template I was using. I may bring them back in the future, but for now, I'm fine with not having them.
+- The intro section to myself with social media links on the home page.
+- The blog cards on the front page for displaying post previews.
+- The post pages themselves.
 
 In reality, one of the ways that I created a website so quickly was that I instantly set out what my requirements were and knew that I had all the expertise I would need to get there. I also made compromises on what exactly I would be willing to put out in the world.
 
@@ -82,12 +82,12 @@ The first task to do before anything else, was to create a base layout for the e
     <Header title={SITE_TITLE} />
     <slot />
     <Footer />
-    
+
   </body>
 </html>
 ```
 
-There's nothing fancy at all to it. My "BaseHead" component is a standard one from Astro with slight modifications for my site. The "Footer" component likewise is just a copyright notice so that maybe one day AI's will acknowledge me for the content they steal and reproduce from me.* 
+There's nothing fancy at all to it. My "BaseHead" component is a standard one from Astro with slight modifications for my site. The "Footer" component likewise is just a copyright notice so that maybe one day AI's will acknowledge me for the content they steal and reproduce from me.\*
 
 #### Header Component
 
@@ -148,36 +148,36 @@ The Header component is a little more interesting.
 
 So, what is going on here? Well, a little bit. It's wordier than it is complicated. For the header, I used DaisyUI's "navbar" component style. That got us off to a great start. While I have no navigation menu, I do have a component for it that will render a menu if I add items to it. In the future, I might do that, but for now, I see no reason.
 
-Then I have a button for toggling the theme of my website between dark and light. To be honest, DaisyUI recommends using an npm package for handling this, but after checking the package out on Github, I didn't see any reason I could just write a few lines and capture all of its functionality locally. 
+Then I have a button for toggling the theme of my website between dark and light. To be honest, DaisyUI recommends using an npm package for handling this, but after checking the package out on Github, I didn't see any reason I could just write a few lines and capture all of its functionality locally.
 
 First, we check if the user has set a theme on the website before. We store this in the localStorage of their browser. This supersedes a user's system preference because we assume they "opt-in" to whichever theme they picked. (Or in reality, they acted like QA engineers switching the theme a dozen times just to be sure it really works.) If we don't find any theme preference in local storage, we check the system preference and set the theme accordingly.
 
 ```js
 if (
-    localStorage.theme === "dark" ||
-    (!("theme" in localStorage) &&
-      window.matchMedia("(prefers-color-scheme:dark)").matches)
-  ) {
-    htmlEl.dataset.theme = "dark";
-    theme = "dark";
-  } else {
-    htmlEl.dataset.theme = "light";
-    theme = "light";
-  }
+  localStorage.theme === "dark" ||
+  (!("theme" in localStorage) &&
+    window.matchMedia("(prefers-color-scheme:dark)").matches)
+) {
+  htmlEl.dataset.theme = "dark";
+  theme = "dark";
+} else {
+  htmlEl.dataset.theme = "light";
+  theme = "light";
+}
 ```
 
 Handling the switch was actually harder than it really should've been but only because my brain is so used to frontend frameworks reactive state management that I can no longer handle simple JavaScript state. And by harder, I mean it took me an extra 10 minutes because I attempted to write it the Svelte way first and realized that wouldn't work.
 
 ```js
 function handleThemeSwitch() {
-    theme = theme === "light" ? "dark" : "light";
-    htmlEl.dataset.theme = theme;
-    localStorage.theme = theme;
-  }
+  theme = theme === "light" ? "dark" : "light";
+  htmlEl.dataset.theme = theme;
+  localStorage.theme = theme;
+}
 
-  document
-    .getElementById("theme-switch")
-    .addEventListener("click", handleThemeSwitch);
+document
+  .getElementById("theme-switch")
+  .addEventListener("click", handleThemeSwitch);
 ```
 
 In reality, I ended up using a pattern that was just backwards from reactivity. Instead of managing a single state variable that changes several properties of elements, I set the state variable and then assigned the several properties to it.
@@ -187,24 +187,24 @@ Now I had a layout that was reusable for all my pages.
 Next, I needed content for a blog. Luckily, Astro has a built-in feature for handling content. All you do is create a content directory, create a "config.ts" file, and then create a directory for your new content collection. The "config.ts" file uses Zog to create a schema to export to the rest of your app. Here's what mine currently looks like:
 
 ```js
-import { defineCollection, z } from 'astro:content';
+import { defineCollection, z } from "astro:content";
 
 const blog = defineCollection({
-	// Type-check frontmatter using a schema
-	schema: z.object({
-		title: z.string(),
-		description: z.string(),
-		// Transform string to Date object
-		pubDate: z
-			.string()
-			.or(z.date())
-			.transform((val) => new Date(val)),
-		updatedDate: z
-			.string()
-			.optional()
-			.transform((str) => (str ? new Date(str) : undefined)),
-		heroImage: z.string().optional(),
-	}),
+  // Type-check frontmatter using a schema
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    // Transform string to Date object
+    pubDate: z
+      .string()
+      .or(z.date())
+      .transform((val) => new Date(val)),
+    updatedDate: z
+      .string()
+      .optional()
+      .transform((str) => (str ? new Date(str) : undefined)),
+    heroImage: z.string().optional(),
+  }),
 });
 
 export const collections = { blog };
@@ -295,7 +295,7 @@ This is the very page that you are looking at. Instead of dealing with styling, 
 
 ## Deployment
 
-Deployment was the easiest part of this whole process. I just followed Astro's [guide on deploying to github pages](https://docs.astro.build/en/guides/deploy/github/). The guide was simple and included everything I needed to know. And most importantly, it actually worked without hacking. It's always great to work with documentation that is being updated and cared about. 
+Deployment was the easiest part of this whole process. I just followed Astro's [guide on deploying to github pages](https://docs.astro.build/en/guides/deploy/github/). The guide was simple and included everything I needed to know. And most importantly, it actually worked without hacking. It's always great to work with documentation that is being updated and cared about.
 
 ## Outcomes
 

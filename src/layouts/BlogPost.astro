@@ -1,13 +1,13 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import { Picture } from "@astrojs/image/components";
+import { Image } from "astro:assets";
 import FormattedDate from "../components/FormattedDate.astro";
 import BaseLayout from "./BaseLayout.astro";
 
 type Props = CollectionEntry<"blog">["data"];
 
 const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
-const heroBackground = `background-image: url(${heroImage});`;
+const heroBackground = `background-image: url(${heroImage.src});`;
 ---
 
 <BaseLayout title={title} description={description}>
@@ -74,9 +74,6 @@ const heroBackground = `background-image: url(${heroImage});`;
 </style>
 
 <script>
-  import expandIcon from "/expand_chevron.svg";
-  console.log(expandIcon);
-
   const trackedItems = [...document.querySelectorAll("h1, article > *")];
   const progress = document.querySelector("progress")!;
   const headers = [...document.querySelectorAll("h1, article h2")];

@@ -1,6 +1,6 @@
 ---
 title: "Choosing a Rendering Strategy for Your Website"
-heroImage: "/rendering/perf-trace.png"
+heroImage: "../../assets/rendering/perf-trace.png"
 description: "Just a few thoughts about the differences between static, server-side, and client-side rendering"
 pubDate: "Nov 19 2023"
 draft: false
@@ -12,15 +12,15 @@ In the world of web development, we are currently spoiled for choice in framewor
 
 If you understand rendering strategies already, you're probably okay to skip ahead. For everyone else, let's give a quick recap on how the web works: user opens browser, user types in your URL, a server reads the URL and serves back an HTML document, the browser renders that HTML document to the DOM, and then that is the web page that the user sees. When an HTML document comes with pretty much all the content already on the page and it gets rendered to the DOM without a lot of manipulation we call that **static rendering**. It is static because the HTML documents that make up the site are not changing when the user requests them. There's no manipulation of them on the server or client-side.
 
-![Example of static rendering](/rendering/static-rendering.png "Static Rendering")
+![Example of static rendering](/static-rendering.png "Static Rendering")
 
 However, just imagine you are an online store owner and you need to make 500 product pages. It seems pretty silly to make them all by hand. It'd be better if you had a database of information and then just had an HTML template you could put that data into as the user requests it and then serve that on demand. This was called **server-side rendering**.
 
-![Example of server-side rendering](/rendering/server-rendering.png "Server-Side Rendering")
+![Example of server-side rendering](/server-rendering.png "Server-Side Rendering")
 
 Now imagine you are Facebook in 2010. Everyone is accessing Facebook through their new mobile devices. Server-side rendering timelines and profiles is okay, but mobile internet is slow. Sending a new HTML document that has 90% the same information as the last one you sent doesn't make a lot of sense. It's a waste of compute power for the servers and internet providers. It'd make far more sense to send a single HTML document and build the entire site using DOM manipulation with JavaScript. This way, when a user visits two different profiles, you only retrieve the information that is actually different. This is called **client-side rendering**.
 
-![Example of client-side rendering](/rendering/client-rendering.png "Client-Side Rendering")
+![Example of client-side rendering](/client-rendering.png "Client-Side Rendering")
 
 While we are creating three distinct rendering styles, there's probably more overlap than you might think. For instance, static rendering mostly uses templates these days and just builds hundreds of pages on the server. Server-side rendering usually includes a caching feature where static content is stored and ready for the next user that requests it. Client-side rendering usually includes more HTML templates these days then it did in the past. And there are even more interactions than that, but for right now, let's take these strategies at face value.
 
