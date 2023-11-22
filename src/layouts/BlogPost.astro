@@ -1,6 +1,5 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import { Image } from "astro:assets";
 import FormattedDate from "../components/FormattedDate.astro";
 import BaseLayout from "./BaseLayout.astro";
 
@@ -35,7 +34,7 @@ const heroBackground = `background-image: url(${heroImage.src});`;
     <div class="hero min-h-[60vh]" style={heroBackground}>
       <div class="hero-overlay bg-opacity-75"></div>
       <div
-        class="hero-content text-center text-base-content md:bg-base-300 rounded-md"
+        class="hero-content text-center text-white md:bg-base-300 md:bg-opacity-90 rounded-md"
       >
         <div class="max-w-md">
           <h1 class="mb-5 text-5xl font-bold">{title}</h1>
@@ -97,7 +96,7 @@ const heroBackground = `background-image: url(${heroImage.src});`;
         blogMenu.classList.toggle("bottom-0", state.blogMenuOpen);
         blogMenu.style.bottom = state.blogMenuOpen
           ? `0`
-          : `-${(headers.length - 1) * 3}rem`;
+          : `-${(headers.length - 1) * 2.25}rem`;
         const menuIcon = blogMenu.querySelector("svg");
         if (menuIcon) {
           menuIcon.classList.toggle("rotate-180", state.blogMenuOpen);
@@ -109,7 +108,7 @@ const heroBackground = `background-image: url(${heroImage.src});`;
           blogMenu.classList.toggle("bottom-0", state.blogMenuOpen);
           blogMenu.style.bottom = state.blogMenuOpen
             ? `0`
-            : `-${(headers.length - 1) * 3}rem`;
+            : `-${(headers.length - 1) * 2.25}rem`;
           const menuIcon = blogMenu.querySelector("svg");
           if (menuIcon) {
             menuIcon.classList.toggle("rotate-180", state.blogMenuOpen);
@@ -121,7 +120,7 @@ const heroBackground = `background-image: url(${heroImage.src});`;
       btn.innerHTML = icon.innerHTML;
       btn.classList.add("whitespace-nowrap");
       btn.appendChild(p);
-      p.classList.add("text-accent-content", "font-bold");
+      p.classList.add("font-bold");
       li.appendChild(btn);
       blogMenu.appendChild(li);
       continue;

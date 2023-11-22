@@ -15,11 +15,11 @@ let { postData, postSlug } = Astro.props;
 
 <article class="article-card border-b border-dashed mt-8 w-11/12 lg:w-1/2">
   <a href={`/blog/${postSlug}`}
-    ><h1
-      class="text-lg text-accent-content hover:text-accent-focus focus:text-accent-focus"
+    ><h2
+      class="text-lg text-base-content font-bold hover:text-accent focus:text-accent focus-within:text-accent"
     >
       {postData.title}
-    </h1></a
+    </h2></a
   >
   <div class="post-meta">
     <span class="post-publish text-base-content text-sm"
@@ -30,7 +30,7 @@ let { postData, postSlug } = Astro.props;
     </div>
     <a href={`/blog/${postSlug}`}
       ><p
-        class="text-accent hover:text-accent-focus focus:text-accent-focus text-sm mb-5"
+        class="text-accent hover:text-neutral-content hover:underline focus:text-neutral-content text-sm mb-5"
       >
         Read More
       </p></a
