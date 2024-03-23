@@ -1,31 +1,48 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import { Picture } from "@astrojs/image/components";
 import FormattedDate from "../components/FormattedDate.astro";
 import BaseLayout from "./BaseLayout.astro";
+import ProgressMenu from "../components/ProgressMenu.astro";
 
 type Props = CollectionEntry<"blog">["data"];
 
 const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const heroBackground = `background-image: url(${heroImage.src});`;
 ---
 
 <BaseLayout title={title} description={description}>
-  <main class="flex justify-center">
+  <div class="progress-wrapper w-full flex justify-center sticky top-0">
+    <progress
+      class="progress progress-accent w-full opacity-80"
+      value="100"
+      max="100"></progress>
+  </div>
+  <main class="flex flex-col justify-center">
+    <div class="hero min-h-[60vh]" style={heroBackground}>
+      <div class="hero-overlay bg-opacity-75"></div>
+      <div
+        class="hero-content text-center text-base-content md:bg-base-300 md:bg-opacity-90 rounded-md"
+      >
+        <div class="max-w-md">
+          <h1 class="mb-5 text-5xl font-bold">{title}</h1>
+          <p class="mb-5">{description}</p>
+          <FormattedDate date={pubDate} />
+          {
+            updatedDate && (
+              <div class="last-updated-on">
+                Last updated on <FormattedDate date={updatedDate} />
+              </div>
+            )
+          }
+        </div>
+      </div>
+    </div>
     <article
-      class="prose lg:prose-lg p-8 w-screen prose-p:text-base-content prose-li:text-base-content"
+      class="prose lg:prose-lg p-8 w-screen prose-p:text-base-content prose-li:text-base-content mx-auto"
     >
-      {heroImage && <img width={720} height={360} src={heroImage} alt="" />}
-      <h1 class="text-center">{title}</h1>
-      <FormattedDate date={pubDate} />
-      {
-        updatedDate && (
-          <div class="last-updated-on">
-            Last updated on <FormattedDate date={updatedDate} />
-          </div>
-        )
-      }
       <hr />
       <slot />
     </article>
   </main>
+  <ProgressMenu title={title} />
 </BaseLayout>

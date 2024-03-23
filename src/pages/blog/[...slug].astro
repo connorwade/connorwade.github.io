@@ -1,5 +1,5 @@
 ---
-import { CollectionEntry, getCollection } from "astro:content";
+import { type CollectionEntry, getCollection } from "astro:content";
 import BlogPost from "../../layouts/BlogPost.astro";
 
 export async function getStaticPaths() {
@@ -19,8 +19,4 @@ const { Content } = await post.render();
   <Content />
 </BlogPost>
 
-<style>
-  table {
-    overflow: scroll;
-  }
-</style>
+

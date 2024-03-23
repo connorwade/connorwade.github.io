@@ -1,6 +1,6 @@
 ---
 title: "Rewriting AEM Edge Delivery"
-heroImage: "/typescript.jpg"
+heroImage: "../../assets/typescript.jpg"
 description: "Exploring Performance Client-Side Performance By Rewriting AEM Edge"
 pubDate: "November 4 2023"
 draft: true

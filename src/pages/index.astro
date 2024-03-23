@@ -1,13 +1,11 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ArticleCard from "../components/ArticleCard.astro";
-import { getCollection } from "astro:content";
 import Icon from "../components/Icon.astro";
 import { getBlogs, sortBlogs } from "../utils";
+import { Image } from "astro:assets";
+import headshot from "../assets/good_enough2.png";
 
 const posts = await getBlogs();
 const sortedPosts = sortBlogs(posts);
@@ -18,11 +16,11 @@ const sortedPosts = sortBlogs(posts);
     <section class="flex flex-col items-center justify-center mt-10 mb-4">
       <div class="avatar flex justify-center my-5">
         <div class="w-32 rounded-full">
-          <img src="/good_enough2.png" alt="A headshot of Connor Wade" />
+          <Image src={headshot} alt="A headshot of Connor Wade" />
         </div>
       </div>
       <h3 class="text-lg text-center">Engineer, Software Developer</h3>
-      <p class="text-base text-center mt-5 lg:w-1/2 md:w-2/3 w-screen">
+      <p class="text-base text-center mt-5 lg:w-1/2 md:w-2/3 w-screen px-2">
         I am a Fullstack Engineer and tech lead. I regularly work with
         TypeScript, JavaScript, Go, Python, and Rust. I am currently interested
         in WASM (and other bytecode interpreters), component libraries focused
@@ -30,7 +28,9 @@ const sortedPosts = sortBlogs(posts);
         AI integration.
       </p>
 
-      <p class="text-base text-center mt-2 mb-5 lg:w-1/2 md:w-2/3 w-screen">
+      <p
+        class="text-base text-center mt-2 mb-5 lg:w-1/2 md:w-2/3 w-screen px-2"
+      >
         Check out my open-source projects like spamlet, a simple crawler plugin
         for Playwright.
       </p>
