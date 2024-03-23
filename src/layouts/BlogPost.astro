@@ -2,6 +2,7 @@
 import type { CollectionEntry } from "astro:content";
 import FormattedDate from "../components/FormattedDate.astro";
 import BaseLayout from "./BaseLayout.astro";
+import ProgressMenu from "../components/ProgressMenu.astro";
 
 type Props = CollectionEntry<"blog">["data"];
 
@@ -10,20 +11,6 @@ const heroBackground = `background-image: url(${heroImage.src});`;
 ---
 
 <BaseLayout title={title} description={description}>
-  <div id="expanded-icon" class="hidden">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      height="24"
-      viewBox="0 -960 960 960"
-      fill="currentColor"
-      width="24"
-      stroke="currentColor"
-      class="min-w-7 min-h-7 rotate-180 duration-200"
-      ><path
-        d="m357-384 123-123 123 123 57-56-180-180-180 180 57 56ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"
-      ></path></svg
-    >
-  </div>
   <div class="progress-wrapper w-full flex justify-center sticky top-0">
     <progress
       class="progress progress-accent w-full opacity-80"
@@ -34,7 +21,7 @@ const heroBackground = `background-image: url(${heroImage.src});`;
     <div class="hero min-h-[60vh]" style={heroBackground}>
       <div class="hero-overlay bg-opacity-75"></div>
       <div
-        class="hero-content text-center text-white md:bg-base-300 md:bg-opacity-90 rounded-md"
+        class="hero-content text-center text-base-content md:bg-base-300 md:bg-opacity-90 rounded-md"
       >
         <div class="max-w-md">
           <h1 class="mb-5 text-5xl font-bold">{title}</h1>
@@ -53,109 +40,9 @@ const heroBackground = `background-image: url(${heroImage.src});`;
     <article
       class="prose lg:prose-lg p-8 w-screen prose-p:text-base-content prose-li:text-base-content mx-auto"
     >
-      <!-- {heroImage && <img width={720} height={360} src={heroImage} alt="" />}
-      <h1 class="text-center">{title}</h1> -->
-
       <hr />
       <slot />
     </article>
   </main>
-  <ul
-    class="blog-menu menu bg-base-200 w-full p-0 fixed overflow-hidden bottom-0"
-  >
-  </ul>
+  <ProgressMenu title={title} />
 </BaseLayout>
-
-<style>
-  .blog-menu {
-    transition: bottom 200ms;
-  }
-</style>
-
-<script>
-  const trackedItems = [...document.querySelectorAll("h1, article > *")];
-  const progress = document.querySelector("progress")!;
-  const headers = [...document.querySelectorAll("h1, article h2")];
-  const blogMenu = document.querySelector("ul.blog-menu")!;
-  const state = {
-    prev: trackedItems[0],
-    active: trackedItems[0],
-    activeSection: headers[0],
-    blogMenuOpen: true,
-  };
-
-  for (const header of headers) {
-    const li = document.createElement("li");
-    if (header.matches("h1")) {
-      li.classList.add("bg-accent", "text-accent-content");
-      const btn = document.createElement("button");
-      const icon = document.querySelector("#expanded-icon")!;
-
-      btn.addEventListener("click", () => {
-        state.blogMenuOpen = !state.blogMenuOpen;
-        blogMenu.classList.toggle("bottom-0", state.blogMenuOpen);
-        blogMenu.style.bottom = state.blogMenuOpen
-          ? `0`
-          : `-${(headers.length - 1) * 2.25}rem`;
-        const menuIcon = blogMenu.querySelector("svg");
-        if (menuIcon) {
-          menuIcon.classList.toggle("rotate-180", state.blogMenuOpen);
-        }
-      });
-      document.addEventListener("scroll", () => {
-        if (state.blogMenuOpen) {
-          state.blogMenuOpen = !state.blogMenuOpen;
-          blogMenu.classList.toggle("bottom-0", state.blogMenuOpen);
-          blogMenu.style.bottom = state.blogMenuOpen
-            ? `0`
-            : `-${(headers.length - 1) * 2.25}rem`;
-          const menuIcon = blogMenu.querySelector("svg");
-          if (menuIcon) {
-            menuIcon.classList.toggle("rotate-180", state.blogMenuOpen);
-          }
-        }
-      });
-      const p = document.createElement("p");
-      p.textContent = header.textContent;
-      btn.innerHTML = icon.innerHTML;
-      btn.classList.add("whitespace-nowrap");
-      btn.appendChild(p);
-      p.classList.add("font-bold");
-      li.appendChild(btn);
-      blogMenu.appendChild(li);
-      continue;
-    }
-    const a = document.createElement("a");
-    a.classList.add("link");
-    a.textContent = header.textContent;
-    a.href = "#" + header.id;
-    li.appendChild(a);
-    blogMenu.appendChild(li);
-  }
-
-  const observer = new IntersectionObserver((entries) => {
-    for (const entry of entries) {
-      if (entry.isIntersecting) {
-        state.prev = state.active;
-        state.active = entry.target;
-      }
-
-      if (!entry.isIntersecting && entry.target === state.active) {
-        state.active = state.prev;
-      }
-
-      const i = trackedItems.indexOf(state.active);
-      progress.value = ((i + 1) / trackedItems.length) * 100;
-
-      if (headers.includes(state.active)) {
-        state.activeSection = state.active;
-        let menuTitle = document.querySelector(".blog-menu p")!;
-        menuTitle.textContent = state.activeSection.textContent;
-      }
-    }
-  });
-
-  for (const item of trackedItems) {
-    observer.observe(item);
-  }
-</script>

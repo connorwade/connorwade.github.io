@@ -1,0 +1,118 @@
+---
+import Icon from "./Icon.astro";
+interface Props {
+  title: string;
+}
+const { title } = Astro.props;
+---
+
+<ul
+  class="blog-menu menu bg-base-200 w-full p-0 fixed overflow-hidden bottom-0"
+  open
+>
+  <li class="text-accent-content hover:bg-base-100 bg-secondary">
+    <button class="whitespace-nowrap focus:hover:text-base-content">
+      <Icon icon="expand" />
+      <span class="font-bold">{title}</span>
+    </button>
+  </li>
+</ul>
+
+<style>
+  .blog-menu {
+    transition: bottom 200ms;
+  }
+  :where(
+      .menu
+        li:not(.menu-title):not(.disabled)
+        > :not(ul):not(details):not(.menu-title)
+    ):not(summary):not(.active):focus {
+    color: inherit;
+  }
+</style>
+
+<script>
+  const btn = document.querySelector(".blog-menu button")!;
+  const menu = document.querySelector(".blog-menu")!;
+  const menuIcon = menu.querySelector("svg")!;
+  const menuTitle = menu.querySelector("span")!;
+
+  const trackedItems = [...document.querySelectorAll("h1, article > *")];
+  const progress = document.querySelector("progress")!;
+  const headers = [...document.querySelectorAll("article h2")];
+
+  const state = {
+    open: menu.hasAttribute("open"),
+    prev: trackedItems[0],
+    active: trackedItems[0],
+    activeSection: headers[0],
+  };
+
+  btn.addEventListener("click", () => {
+    menu.toggleAttribute("open");
+    state.open = menu.hasAttribute("open");
+  });
+
+  document.addEventListener("scroll", () => {
+    if (state.open) {
+      menu.removeAttribute("open");
+      state.open = false;
+    }
+  });
+
+  function toggleMenu() {
+    menu.classList.toggle("bottom-0", !state.open);
+    menu.style.bottom = state.open ? `0` : `-${headers.length * 2.25}rem`;
+    if (menuIcon) {
+      menuIcon.classList.toggle("rotate-180", state.open);
+    }
+  }
+
+  for (const header of headers) {
+    const anchor = document.createElement("a");
+    anchor.href = `#${header.id}`;
+    anchor.textContent = header.textContent;
+    anchor.classList.add("link");
+    const li = document.createElement("li");
+    li.appendChild(anchor);
+    menu.appendChild(li);
+  }
+
+  const menuObs = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.attributeName === "open") {
+        state.open = menu.hasAttribute("open");
+        toggleMenu();
+      } else {
+        toggleMenu();
+      }
+    });
+  });
+
+  menuObs.observe(menu, { attributes: true, attributeFilter: ["open"] });
+
+  const observer = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) {
+        state.prev = state.active;
+        state.active = entry.target;
+      }
+
+      if (!entry.isIntersecting && entry.target === state.active) {
+        state.active = state.prev;
+      }
+
+      const i = trackedItems.indexOf(state.active);
+      progress.value = ((i + 1) / trackedItems.length) * 100;
+
+      if (headers.includes(state.active)) {
+        state.activeSection = state.active;
+        menuTitle.textContent = state.activeSection.textContent;
+      }
+    }
+  });
+
+  for (const item of trackedItems) {
+    observer.observe(item);
+  }
+</script>

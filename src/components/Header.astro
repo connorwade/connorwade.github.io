@@ -31,26 +31,28 @@ import { SITE_TITLE, HEADER_LINKS } from "../consts";
 
 <script>
   let theme = "light";
-  let htmlEl = document.querySelector("html");
+  let htmlEl = document.querySelector("html")!;
+  let darkTheme = "business";
+  let lightTheme = "nord";
 
   if (
     localStorage.theme === "dark" ||
     (!("theme" in localStorage) &&
       window.matchMedia("(prefers-color-scheme:dark)").matches)
   ) {
-    htmlEl.dataset.theme = "dark";
+    htmlEl.dataset.theme = darkTheme;
     theme = "dark";
   } else {
-    htmlEl.dataset.theme = "light";
+    htmlEl.dataset.theme = lightTheme;
     theme = "light";
   }
   function handleThemeSwitch() {
     theme = theme === "light" ? "dark" : "light";
-    htmlEl.dataset.theme = theme;
+    htmlEl.dataset.theme = theme === "light" ? lightTheme : darkTheme;
     localStorage.theme = theme;
   }
 
   document
-    .getElementById("theme-switch")
+    .getElementById("theme-switch")!
     .addEventListener("click", handleThemeSwitch);
 </script>
