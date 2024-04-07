@@ -12,7 +12,7 @@ const posts = await getBlogs();
 const sortedPosts = sortBlogs(posts);
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
@@ -42,7 +42,9 @@ const sortedPosts = sortBlogs(posts);
             sortedPosts.map((post) => (
               <li>
                 <FormattedDate date={post.data.pubDate} />
-                <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
+                <a class="link" href={`/blog/${post.slug}/`}>
+                  {post.data.title}
+                </a>
               </li>
             ))
           }
@@ -50,4 +52,5 @@ const sortedPosts = sortBlogs(posts);
       </section>
     </main>
   </BaseLayout>
+
 </html>

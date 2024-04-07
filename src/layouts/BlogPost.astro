@@ -7,7 +7,12 @@ import ProgressMenu from "../components/ProgressMenu.astro";
 type Props = CollectionEntry<"blog">["data"];
 
 const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
-const heroBackground = `background-image: url(${heroImage.src});`;
+
+let heroBackground =
+  "background: linear-gradient(oklch(var(--a)), oklch(var(--s)));";
+if (heroImage) {
+  heroBackground = `background-image: url(${heroImage.src});`;
+}
 ---
 
 <BaseLayout title={title} description={description}>
