@@ -136,10 +136,10 @@ Or this can be better demonstrated if we add an additional block of code to the 
 ```ts
 //...
 export function hydrateCounter(counter: HTMLButtonElement) {
-  const count = vanilla.useState(0, () => {
+  const count = useState(0, () => {
     counter.textContent = `${count.value}`;
   });
-  const color = vanilla.useState(false, () => {
+  const color = useState(false, () => {
     counter.style.backgroundColor = color.value ? "black" : "white";
     counter.style.color = color.value ? "white" : "black";
   });
@@ -319,4 +319,6 @@ function hydrateAccordionContainer(container: HTMLDivElement) {
 
 It's definitely possible to do this without the use of in-memory state like we're doing here, but this defines a rigid local reactivity to build around.
 
-We'll stop here for now, but next time we'll discuss building context stores similar to React's or Svelte's to share page state and site state across the client.
+You may also wonder what the advantage of defining this seperate context even is. So far, what we've built is about as effective as just defining a state variable and just updating it when we write functions. As we go along, we will introduce more logic that will make encapsulation nicer. For now, you just have to trust me.
+
+Next time we'll discuss building context stores similar to React's or Svelte's to share page state and site state across the client.
