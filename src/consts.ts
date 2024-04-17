@@ -3,4 +3,4 @@
 
 export const SITE_TITLE = "Connor Wade";
 export const SITE_DESCRIPTION = "Welcome to my website!";
-export const HEADER_LINKS = [];
+export const HEADER_LINKS = [{ content: "Blog", link: "/blog" }];

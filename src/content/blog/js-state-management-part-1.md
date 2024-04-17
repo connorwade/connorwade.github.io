@@ -33,57 +33,65 @@ However, React works in a particular way. When it re-renders the component, it r
 
 ## The setup
 
-For this tutorial, I'll use the vanilla JavaScript template in Vite with TypeScript enabled.
+For these tutorials, I'll use the Astro framework. If you're unfamiliar with Astro, it's a great framework for generating static websites. It can do a lot more than that, but we're not here to talk about my love for Astro. I used the setup with demo content and TypeScript.
 
 ```bash
-npm create vite@latest
+npm create astro@latest
 ```
 
-Go ahead and delete all the boilerplate in `main.ts`, we won't need it. Add the following to your `index.html` body:
+Familiarize yourself if you need to. Astro isn't really that complicated to understand. You'll catch on quickly. The important thing to remember with Astro is that there is no client-side rendering. Therefore, you'll see client-side logic written in `script` HTML blocks.
 
-```html
-<body>
-  <button class="counter">0</button>
-  <script type="module" src="/src/main.ts"></script>
-</body>
-```
+Go ahead and add a new page.
 
-Now open `main.ts` and let's code without anymore fanfare.
+```astro
+<!-- // pages/index.astro -->
+---
+import Layout from "../layouts/Layout.astro";
+import Counter from "../components/Counter.astro";
+import CounterWatcher from "../components/CounterWatcher.astro";
+---
 
-```ts
-function useState<T>(
-  initialValue: T,
-  afterUpdate: () => void = () => {},
-  beforeUpdate: () => void = () => {}
-) {
-  let hook = {
-    value: initialValue,
-    set(newValue: T) {
-      beforeUpdate();
-      hook.value = newValue;
-      afterUpdate();
-    },
-  };
+<Layout title="State Management">
+  <main>
+    <button class="counter">0</button>
+  </main>
 
-  return hook;
-}
+  <script>
+    function useState<T>(
+      initialValue: T,
+      afterUpdate: () => void = () => {},
+      beforeUpdate: () => void = () => {}
+    ) {
+      let hook = {
+        value: initialValue,
+        set(newValue: T) {
+          beforeUpdate();
+          hook.value = newValue;
+          afterUpdate();
+        },
+      };
 
-function hydrateCounter(counter: HTMLButtonElement) {
-  const count = useState(0, () => {
-    counter.textContent = `${count.value}`;
-  });
+      return hook;
+    }
 
-  counter.addEventListener("click", () => {
-    count.set(count.value + 1);
-  });
-}
+    function hydrateCounter(counter: HTMLButtonElement) {
+      const count = useState(0, () => {
+        counter.textContent = `${count.value}`;
+      });
 
-const counters: NodeListOf<HTMLButtonElement> =
-  document.querySelectorAll(".counter");
+      counter.addEventListener("click", () => {
+        count.set(count.value + 1);
+      });
+    }
 
-counters.forEach((counter) => {
-  hydrateCounter(counter);
-});
+    const counters: NodeListOf<HTMLButtonElement> =
+      document.querySelectorAll(".counter");
+
+    counters.forEach((counter) => {
+      hydrateCounter(counter);
+    });
+  </script>
+</Layout>
 ```
 
 Let's talk about how this code works and why.
@@ -135,7 +143,7 @@ Or this can be better demonstrated if we add an additional block of code to the 
 
 ```ts
 //...
-export function hydrateCounter(counter: HTMLButtonElement) {
+function hydrateCounter(counter: HTMLButtonElement) {
   const count = useState(0, () => {
     counter.textContent = `${count.value}`;
   });
@@ -236,9 +244,7 @@ function useState<T>(
 
 Keep in mind however, that a counter in JavaScript could also be built simply using something like:
 
-```js
-// main.ts
-
+```ts
 const counters: NodeListOf<HTMLButtonElement> =
   document.querySelectorAll(".counter");
 
@@ -322,3 +328,5 @@ It's definitely possible to do this without the use of in-memory state like we'r
 You may also wonder what the advantage of defining this seperate context even is. So far, what we've built is about as effective as just defining a state variable and just updating it when we write functions. As we go along, we will introduce more logic that will make encapsulation nicer. For now, you just have to trust me.
 
 Next time we'll discuss building context stores similar to React's or Svelte's to share page state and site state across the client.
+
+[Continue to Part 2](/blog/js-state-management-part2)
