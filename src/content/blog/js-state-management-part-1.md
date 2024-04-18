@@ -329,4 +329,4 @@ You may also wonder what the advantage of defining this seperate context even is
 
 Next time we'll discuss building context stores similar to React's or Svelte's to share page state and site state across the client.
 
-[Continue to Part 2](/blog/js-state-management-part2)
+[Continue to Part 2 - State stores and contexts](/blog/js-state-management-part2)

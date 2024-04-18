@@ -1,6 +1,6 @@
 ---
 title: "How to: JavaScript State Management Without Libraries - Part 2"
-description: "How to build state stores or context"
+description: "How to use state stores or contexts on static websites"
 pubDate: "April 17 2024"
 draft: false
 ---
@@ -490,3 +490,5 @@ Run the development server for Astro. Increment the counters on the home page. T
 That's all there is to it. We now have defined a store function that allows us to create components that react to state changes across the entire client. There's a lot of room to play around with the two functions we've created and it allows us to change it for our own purposes. That's the best part of defining your own state structures is that you can make it work for exactly the use case you have. It's more important to understand the principles of how things work so that you can implement them yourself.
 
 In the next part, we will be showing how to create signal state structures for vanilla JavaScript. While not quite as useful without a frontend framework, you can still do some really interesting state management with them on a static website.
+
+[Continue to Part 3 - Signal states](/blog/js-state-management-part2)
