@@ -491,4 +491,4 @@ That's all there is to it. We now have defined a store function that allows us t
 
 In the next part, we will be showing how to create signal state structures for vanilla JavaScript. While not quite as useful without a frontend framework, you can still do some really interesting state management with them on a static website.
 
-[Continue to Part 3 - Signal states](/blog/js-state-management-part2)
+[Continue to Part 3 - Signal states](/blog/js-state-management-part3)
