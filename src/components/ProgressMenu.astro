@@ -8,7 +8,6 @@ const { title } = Astro.props;
 
 <ul
   class="blog-menu menu bg-base-200 w-full p-0 fixed overflow-hidden bottom-0"
-  open
 >
   <li class="text-accent-content hover:bg-base-100 bg-secondary">
     <button class="whitespace-nowrap focus:hover:text-base-content">
@@ -32,8 +31,10 @@ const { title } = Astro.props;
 </style>
 
 <script>
+  import { useState, useStore } from "../scripts/state";
+
   const btn = document.querySelector(".blog-menu button")!;
-  const menu = document.querySelector(".blog-menu")!;
+  const menu = document.querySelector(".blog-menu")! as HTMLUListElement;
   const menuIcon = menu.querySelector("svg")!;
   const menuTitle = menu.querySelector("span")!;
 
@@ -41,74 +42,104 @@ const { title } = Astro.props;
   const progress = document.querySelector("progress")!;
   const headers = [...document.querySelectorAll("article h2")];
 
-  const state = {
-    open: menu.hasAttribute("open"),
-    prev: trackedItems[0],
-    active: trackedItems[0],
-    activeSection: headers[0],
-  };
+  const menuState = useState({ open: true }, () => {
+    menu.classList.toggle("bottom-0", !menuState.value.open);
+    menu.style.bottom = menuState.value.open
+      ? `0`
+      : `-${headers.length * 2.25}rem`;
+    if (menuIcon) {
+      menuIcon.classList.toggle("rotate-180", menuState.value.open);
+    }
+  });
+
+  const progressStore = useStore<
+    { prev: Element; active: Element; activeSection: Element },
+    | { type: "SET_PREV"; payload: Element }
+    | { type: "SET_ACTIVE"; payload: Element }
+    | { type: "SET_ACTIVE_SECTION"; payload: Element }
+  >({
+    initialState: {
+      prev: trackedItems[0],
+      active: trackedItems[0],
+      activeSection: headers[0],
+    },
+    reducer: (state, action) => {
+      switch (action.type) {
+        case "SET_PREV":
+          return { ...state, prev: action.payload };
+        case "SET_ACTIVE":
+          return { ...state, active: action.payload };
+        case "SET_ACTIVE_SECTION":
+          return { ...state, activeSection: action.payload };
+        default:
+          return state;
+      }
+    },
+  });
 
   btn.addEventListener("click", () => {
-    menu.toggleAttribute("open");
-    state.open = menu.hasAttribute("open");
+    menuState.set({ open: !menuState.value.open });
   });
 
   document.addEventListener("scroll", () => {
-    if (state.open) {
-      menu.removeAttribute("open");
-      state.open = false;
+    if (menuState.value.open) {
+      requestIdleCallback(() => {
+        menuState.set({ open: false });
+      });
     }
   });
-
-  function toggleMenu() {
-    menu.classList.toggle("bottom-0", !state.open);
-    menu.style.bottom = state.open ? `0` : `-${headers.length * 2.25}rem`;
-    if (menuIcon) {
-      menuIcon.classList.toggle("rotate-180", state.open);
-    }
-  }
 
   for (const header of headers) {
     const anchor = document.createElement("a");
     anchor.href = `#${header.id}`;
     anchor.textContent = header.textContent;
     anchor.classList.add("link");
+    anchor.addEventListener("click", (e) => {
+      e.preventDefault();
+      history.pushState(null, "", anchor.href);
+      header.scrollIntoView({ behavior: "smooth" });
+    });
     const li = document.createElement("li");
     li.appendChild(anchor);
     menu.appendChild(li);
   }
 
-  const menuObs = new MutationObserver((mutations) => {
-    mutations.forEach((mutation) => {
-      if (mutation.attributeName === "open") {
-        state.open = menu.hasAttribute("open");
-        toggleMenu();
-      } else {
-        toggleMenu();
-      }
-    });
-  });
-
-  menuObs.observe(menu, { attributes: true, attributeFilter: ["open"] });
-
   const observer = new IntersectionObserver((entries) => {
     for (const entry of entries) {
-      if (entry.isIntersecting) {
-        state.prev = state.active;
-        state.active = entry.target;
-      }
+      requestIdleCallback(() => {
+        if (entry.isIntersecting) {
+          progressStore.dispatch({
+            type: "SET_PREV",
+            payload: progressStore.getState().prev,
+          });
+          progressStore.dispatch({
+            type: "SET_ACTIVE",
+            payload: entry.target,
+          });
+        }
 
-      if (!entry.isIntersecting && entry.target === state.active) {
-        state.active = state.prev;
-      }
+        if (
+          !entry.isIntersecting &&
+          entry.target === progressStore.getState().active
+        ) {
+          progressStore.dispatch({
+            type: "SET_ACTIVE",
+            payload: progressStore.getState().prev,
+          });
+        }
 
-      const i = trackedItems.indexOf(state.active);
-      progress.value = ((i + 1) / trackedItems.length) * 100;
+        const i = trackedItems.indexOf(progressStore.getState().active);
+        progress.value = ((i + 1) / trackedItems.length) * 100;
 
-      if (headers.includes(state.active)) {
-        state.activeSection = state.active;
-        menuTitle.textContent = state.activeSection.textContent;
-      }
+        if (headers.includes(progressStore.getState().active)) {
+          progressStore.dispatch({
+            type: "SET_ACTIVE_SECTION",
+            payload: progressStore.getState().active,
+          });
+          menuTitle.textContent =
+            progressStore.getState().activeSection.textContent;
+        }
+      });
     }
   });
 
