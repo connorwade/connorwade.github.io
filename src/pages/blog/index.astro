@@ -17,32 +17,22 @@ const sortedPosts = sortBlogs(posts);
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     <style>
-      ul {
-        list-style-type: none;
-        padding: unset;
-      }
-      ul li {
-        display: flex;
-      }
       ul li :global(time) {
-        flex: 0 0 130px;
+        flex: 0 0 5.625rem;
         font-style: italic;
         color: #595959;
-      }
-      ul li a:visited {
-        color: #8e32dc;
       }
     </style>
   </head>
   <BaseLayout>
     <main>
       <section>
-        <ul>
+        <ul class="list-none p-4">
           {
             sortedPosts.map((post) => (
-              <li>
+              <li class="group flex gap-4">
                 <FormattedDate date={post.data.pubDate} />
-                <a class="link" href={`/blog/${post.slug}/`}>
+                <a class="visited:text-primary group-hover:text-secondary" href={`/blog/${post.slug}/`}>
                   {post.data.title}
                 </a>
               </li>

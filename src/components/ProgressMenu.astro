@@ -110,7 +110,7 @@ const { title } = Astro.props;
         if (entry.isIntersecting) {
           progressStore.dispatch({
             type: "SET_PREV",
-            payload: progressStore.getState().prev,
+            payload: progressStore.getState().active,
           });
           progressStore.dispatch({
             type: "SET_ACTIVE",
