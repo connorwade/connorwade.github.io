@@ -6,7 +6,7 @@ import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "www.codingakita.com",
+  site: "https://www.codingakita.com",
   integrations: [mdx(), sitemap()],
 
   vite: {
