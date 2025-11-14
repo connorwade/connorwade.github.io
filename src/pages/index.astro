@@ -13,14 +13,14 @@ const sortedPosts = sortBlogs(posts);
 
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
   <main>
-    <section class="flex flex-col items-center justify-center mt-10 mb-4">
-      <div class="avatar flex justify-center my-5">
+    <section class="mt-10 mb-4 flex flex-col items-center justify-center">
+      <div class="avatar my-5 flex justify-center">
         <div class="w-32 rounded-full">
           <Image src={headshot} alt="A headshot of Connor Wade" />
         </div>
       </div>
-      <h3 class="text-lg text-center">Engineer, Software Developer</h3>
-      <p class="text-base text-center mt-5 lg:w-1/2 md:w-2/3 w-screen px-2">
+      <h3 class="text-center text-lg">Engineer, Software Developer</h3>
+      <p class="mt-5 w-screen px-2 text-center text-base md:w-2/3 lg:w-1/2">
         I am a Fullstack Engineer and tech lead. I regularly work with
         TypeScript, JavaScript, Go, Python, and Rust. I am currently interested
         in WASM (and other bytecode interpreters), component libraries focused
@@ -29,12 +29,12 @@ const sortedPosts = sortBlogs(posts);
       </p>
 
       <p
-        class="text-base text-center mt-2 mb-5 lg:w-1/2 md:w-2/3 w-screen px-2"
+        class="mt-2 mb-5 w-screen px-2 text-center text-base md:w-2/3 lg:w-1/2"
       >
         Check out my open-source projects like spamlet, a simple crawler plugin
         for Playwright.
       </p>
-      <div class="links flex justify-around flex-row md:w-1/6 w-1/4">
+      <div class="links flex w-1/4 flex-row justify-around md:w-1/6">
         <a href="https://github.com/connorwade" title="My Github"
           ><Icon icon="github" /></a
         >

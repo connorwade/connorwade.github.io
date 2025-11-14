@@ -7,10 +7,10 @@ const { title } = Astro.props;
 ---
 
 <ul
-  class="blog-menu menu bg-base-200 w-full p-0 fixed overflow-hidden bottom-0"
+  class="blog-menu menu bg-base-200 fixed bottom-0 w-full overflow-hidden p-0"
 >
   <li class="text-accent-content hover:bg-base-100 bg-secondary">
-    <button class="whitespace-nowrap focus:hover:text-base-content">
+    <button class="focus:hover:text-base-content whitespace-nowrap">
       <Icon icon="expand" />
       <span class="font-bold">{title}</span>
     </button>

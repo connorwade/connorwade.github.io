@@ -5,10 +5,10 @@ import Icon from "./Icon.astro";
 import { SITE_TITLE, HEADER_LINKS } from "../consts";
 ---
 
-<header class="navbar bg-base-300 lg:px-8 px-3">
+<header class="navbar bg-base-300 px-3 lg:px-8">
   <div class="navbar-start">
     <a href="/"
-      ><h2 class="text-2xl font-extrabold hover:text-accent">
+      ><h2 class="hover:text-accent text-2xl font-extrabold">
         {SITE_TITLE}
       </h2></a
     >
@@ -16,7 +16,7 @@ import { SITE_TITLE, HEADER_LINKS } from "../consts";
 
   <div class="navbar-end">
     <NavMenu links={HEADER_LINKS} />
-    <div class="switch-container border-l pl-3 border-neutral-content">
+    <div class="switch-container border-neutral-content border-l pl-3">
       <button
         class="btn btn-circle btn-outline btn-sm"
         type="button"

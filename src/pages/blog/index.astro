@@ -32,7 +32,10 @@ const sortedPosts = sortBlogs(posts);
             sortedPosts.map((post) => (
               <li class="group flex gap-4">
                 <FormattedDate date={post.data.pubDate} />
-                <a class="visited:text-primary group-hover:text-secondary" href={`/blog/${post.slug}/`}>
+                <a
+                  class="visited:text-primary group-hover:text-secondary"
+                  href={`/blog/${post.slug}/`}
+                >
                   {post.data.title}
                 </a>
               </li>
@@ -42,5 +45,4 @@ const sortedPosts = sortBlogs(posts);
       </section>
     </main>
   </BaseLayout>
-
 </html>

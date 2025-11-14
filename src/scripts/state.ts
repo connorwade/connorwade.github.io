@@ -1,7 +1,7 @@
 export function useState<T>(
   initialValue: T,
   afterUpdate: () => void = () => {},
-  beforeUpdate: () => void = () => {}
+  beforeUpdate: () => void = () => {},
 ) {
   let hook = {
     value: initialValue,
@@ -57,7 +57,7 @@ export function useStore<T, U>(
   }: { useLocalStorage?: boolean; key?: string } = {
     useLocalStorage: false,
     key: "state",
-  }
+  },
 ) {
   let state = initialState;
 
@@ -90,7 +90,7 @@ export function useStore2<U>(
     initialState: Record<string, unknown>;
     reducer: (
       state: Record<string, unknown>,
-      action: U
+      action: U,
     ) => Record<string, unknown>;
   },
   {
@@ -99,11 +99,11 @@ export function useStore2<U>(
   }: { useLocalStorage?: boolean; key?: string } = {
     useLocalStorage: false,
     key: "state",
-  }
+  },
 ) {
   let state = initialState;
   let storageKeys = Object.keys(initialState).map(
-    (stateKey) => `${key}:${stateKey}`
+    (stateKey) => `${key}:${stateKey}`,
   );
 
   const { notify, subscribe, unsubscribe } = useSubscription();
@@ -119,7 +119,7 @@ export function useStore2<U>(
       if (localStorage.getItem(storageKey) === null) {
         localStorage.setItem(
           storageKey,
-          String(initialState[stateKey]) // might still need a JSON parse if you're storing objects
+          String(initialState[stateKey]), // might still need a JSON parse if you're storing objects
         );
       } else {
         // you will have to resolve the type of the state value here to have proper conversion
@@ -135,7 +135,9 @@ export function useStore2<U>(
       subscribe(() => {
         // check if state is dirty, if so, update local storage
         if (state[stateKey] !== localStorage.getItem(storageKey)) {
-          requestIdleCallback(() => {localStorage.setItem(storageKey, String(state[stateKey]))});
+          requestIdleCallback(() => {
+            localStorage.setItem(storageKey, String(state[stateKey]));
+          });
         }
       });
     }

@@ -133,44 +133,44 @@ The next thing we need to do is define a `Counter` component that uses the store
 </div>
 
 <script>
-import {
-  subscribe,
-  getState,
-  dispatch,
-  unsubscribe,
-} from "../scripts/countStore";
+  import {
+    subscribe,
+    getState,
+    dispatch,
+    unsubscribe,
+  } from "../scripts/countStore";
 
-const counters = [
-  ...document.querySelectorAll(".counter"),
-]! as HTMLDivElement[];
+  const counters = [
+    ...document.querySelectorAll(".counter"),
+  ]! as HTMLDivElement[];
 
-counters.forEach(hydrateCounter);
+  counters.forEach(hydrateCounter);
 
-function hydrateCounter(counter: HTMLDivElement) {
-  const inc = counter.querySelector(".inc")!;
-  const dec = counter.querySelector(".dec")!;
-  const count = counter.querySelector(".count")!;
-  const reset = counter.querySelector(".reset")!;
+  function hydrateCounter(counter: HTMLDivElement) {
+    const inc = counter.querySelector(".inc")!;
+    const dec = counter.querySelector(".dec")!;
+    const count = counter.querySelector(".count")!;
+    const reset = counter.querySelector(".reset")!;
 
-  function render() {
-    count!.textContent = `${getState().count}`;
+    function render() {
+      count!.textContent = `${getState().count}`;
+    }
+
+    render();
+    subscribe(render);
+
+    inc.addEventListener("click", () => {
+      dispatch({ type: "INCREMENT" });
+    });
+
+    dec.addEventListener("click", () => {
+      dispatch({ type: "DECREMENT" });
+    });
+
+    reset.addEventListener("click", () => {
+      dispatch({ type: "RESET" });
+    });
   }
-
-  render();
-  subscribe(render);
-
-  inc.addEventListener("click", () => {
-    dispatch({ type: "INCREMENT" });
-  });
-
-  dec.addEventListener("click", () => {
-    dispatch({ type: "DECREMENT" });
-  });
-
-  reset.addEventListener("click", () => {
-    dispatch({ type: "RESET" });
-  });
-}
 </script>
 ```
 
@@ -219,14 +219,14 @@ We could also use the store to effect another component, it doesn't have to just
 <h1 class="header-count">0</h1>
 
 <script>
-import { subscribe, getState } from "../scripts/countStore";
+  import { subscribe, getState } from "../scripts/countStore";
 
-function render() {
-  document.querySelector("h1")!.innerText = `${getState().count}`;
-}
+  function render() {
+    document.querySelector("h1")!.innerText = `${getState().count}`;
+  }
 
-render()
-subscribe(render);
+  render();
+  subscribe(render);
 </script>
 ```
 
@@ -241,7 +241,7 @@ import CounterWatcher from "../components/CounterWatcher.astro";
 
 <Layout title="State Management">
   <main>
-	<CounterWatcher />
+    <CounterWatcher />
     <Counter />
     <Counter />
   </main>
@@ -260,7 +260,7 @@ So while the ability to control state across a page is pretty cool, honestly, it
 export function useState<T>(
   initialValue: T,
   afterUpdate: () => void = () => {},
-  beforeUpdate: () => void = () => {}
+  beforeUpdate: () => void = () => {},
 ) {
   let hook = {
     value: initialValue,
@@ -316,7 +316,7 @@ export function useStore<T, U>(
   }: { useLocalStorage?: boolean; key?: string } = {
     useLocalStorage: false,
     key: "state",
-  }
+  },
 ) {
   let state = initialState;
 
@@ -376,11 +376,11 @@ export function useStore2<U>(
   }: { useLocalStorage?: boolean; key?: string } = {
     useLocalStorage: false,
     key: "state",
-  }
+  },
 ) {
   let state = initialState;
   let storageKeys = Object.keys(initialState).map(
-    (stateKey) => `${key}:${stateKey}`
+    (stateKey) => `${key}:${stateKey}`,
   );
 
   const { notify, subscribe, unsubscribe } = useSubscription();
@@ -396,7 +396,7 @@ export function useStore2<U>(
       if (localStorage.getItem(storageKey) === null) {
         localStorage.setItem(
           storageKey,
-          String(initialState[stateKey]) // might still need a JSON parse if you're storing objects
+          String(initialState[stateKey]), // might still need a JSON parse if you're storing objects
         );
       } else {
         // you will have to resolve the type of the state value here to have proper conversion
@@ -466,7 +466,7 @@ const count = useStore<
   {
     useLocalStorage: true,
     key: "STATE:COUNT",
-  }
+  },
 );
 
 export const { getState, dispatch, subscribe, unsubscribe } = count;
@@ -475,10 +475,11 @@ export const { getState, dispatch, subscribe, unsubscribe } = count;
 Now that we have that, let's see it work across the client. Create a new page in our Astro project. Do that by creating a new directory under `pages` and call it `count`. Then create a file under `count` called `index.astro`. In `index.astro`, add the following code:
 
 ```astro
---- import Counter from
-"../../components/Counter.astro"; import CounterWatcher from
-"../../components/CounterWatcher.astro"; import Layout from
-"../../layouts/Layout.astro"; ---
+---
+import Counter from "../../components/Counter.astro";
+import CounterWatcher from "../../components/CounterWatcher.astro";
+import Layout from "../../layouts/Layout.astro";
+---
 
 <Layout title="Count">
   <Counter />

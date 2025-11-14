@@ -1,24 +1,26 @@
 ---
 interface Props {
-	postData: {
-		title: string;
-		description: string;
-		pubDate: Date;
-		updatedDate?: Date | undefined;
-		heroImage?: string | undefined;
-	};
-	postSlug: string;
+  postData: {
+    title: string;
+    description: string;
+    pubDate: Date;
+    updatedDate?: Date | undefined;
+    heroImage?: string | undefined;
+  };
+  postSlug: string;
 }
 import FormattedDate from "./FormattedDate.astro";
 let { postData, postSlug } = Astro.props;
 ---
 
-  <a class="article-card group border-b border-dashed mt-8 w-11/12 lg:w-1/2" href={`/blog/${postSlug}`}
-    ><h2
-      class="text-lg text-base-content font-bold group-hover:text-accent group-focus:text-accent"
-    >
-      {postData.title}
-    </h2>
+<a
+  class="article-card group mt-8 w-11/12 border-b border-dashed lg:w-1/2"
+  href={`/blog/${postSlug}`}
+  ><h2
+    class="text-base-content group-hover:text-accent group-focus:text-accent text-lg font-bold"
+  >
+    {postData.title}
+  </h2>
   <div class="post-meta">
     <span class="post-publish text-base-content text-sm"
       >Published on <FormattedDate date={postData.pubDate} /></span
@@ -26,10 +28,9 @@ let { postData, postSlug } = Astro.props;
     <div class="content py-2">
       <p>{postData.description}</p>
     </div><p
-        class="text-accent group-hover:text-neutral-content group-hover:underline group-focus:text-neutral-content text-sm mb-5"
-      >
-        Read More
-      </p>
-  </div>
-  </a
+      class="text-accent group-hover:text-neutral-content group-focus:text-neutral-content mb-5 text-sm group-hover:underline"
     >
+      Read More
+    </p>
+  </div>
+</a>

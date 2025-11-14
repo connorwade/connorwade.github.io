@@ -110,7 +110,7 @@ dropdown.addEventListener(
       proxySelectEl.textContent = e.target.parentElement.innerText;
     }
   },
-  true
+  true,
 );
 ```
 

@@ -7,39 +7,39 @@ draft: true
 
 ## What is Event Delegation?
 
-In web development, event delegation is attaching events on the upper-most element in your document. 
+In web development, event delegation is attaching events on the upper-most element in your document.
 
 For example, if you have a basic clicker on a page, instead of attaching the event to the button, you would attach it to the document.
 
 ```html
 <!-- Basic clicker example -->
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Event Delegation</title>
-</head>
-<body>
+  </head>
+  <body>
     <button class="counter">0</button>
-</body>
-<script>
-    document.addEventListener('click', function(e) {
-        if(e.target.classList.contains('counter')) {
-            e.target.innerText = +e.target.innerText + 1;
-        }
-    })
-</script>
+  </body>
+  <script>
+    document.addEventListener("click", function (e) {
+      if (e.target.classList.contains("counter")) {
+        e.target.innerText = +e.target.innerText + 1;
+      }
+    });
+  </script>
 </html>
 ```
 
 How does this work? Well, don't forget, in JavaScript, all events are bubbled up to ancestor component. (Though you do have the option of only listening to "captured" events.) This makes sense if you think about it. If you click a button on a page, you have technically also clicked the page and any other containing element of that button.
 
- Therefore, even when you click on the button, technically, it was also a click on the document. More often than not, bubbling and capturing is actually a common source of frustration for beginner programmers (and some seniors on complex enough projects). However, we can also use them to simplify complex event patterns and slightly improve performance.
+Therefore, even when you click on the button, technically, it was also a click on the document. More often than not, bubbling and capturing is actually a common source of frustration for beginner programmers (and some seniors on complex enough projects). However, we can also use them to simplify complex event patterns and slightly improve performance.
 
 ## What are the upsides to event delegation?
 
-Broadly, event delegation can slightly improve performance and be easier to reason with. 
+Broadly, event delegation can slightly improve performance and be easier to reason with.
 
 ### Faster event hydration
 
@@ -78,41 +78,41 @@ Here's how you might create a small menu with loops. As loops get longer, the pe
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Menu</title>
-</head>
-<body>
+  </head>
+  <body>
     <div>
-        <h1>Menu</h1>
-        <p>Click to add to cart</p>
-        <p>Cart</p>
-        <p>Items: <span class="menu__items">0</span></p>
-        <p>Total: $<span class="menu__cost">0.00</span></p>
+      <h1>Menu</h1>
+      <p>Click to add to cart</p>
+      <p>Cart</p>
+      <p>Items: <span class="menu__items">0</span></p>
+      <p>Total: $<span class="menu__cost">0.00</span></p>
     </div>
 
     <ul class="menu">
-        <li><button class="menu__item" data-price="2.00">Iced Coffee</button></li>
-        <li><button class="menu__item" data-price="3.00">Nice Coffee</button></li>
-        <li><button class="menu__item" data-price="4.00">Latte</button></li>
+      <li><button class="menu__item" data-price="2.00">Iced Coffee</button></li>
+      <li><button class="menu__item" data-price="3.00">Nice Coffee</button></li>
+      <li><button class="menu__item" data-price="4.00">Latte</button></li>
     </ul>
-</body>
+  </body>
 </html>
 
 <script>
-    const total = document.querySelector('.menu__cost');
-    const items = document.querySelector('.menu__items');
+  const total = document.querySelector(".menu__cost");
+  const items = document.querySelector(".menu__items");
 
-    const menuItemEls = [...document.querySelectorAll('.menu__item')];
+  const menuItemEls = [...document.querySelectorAll(".menu__item")];
 
-    for(let i = 0; i < menuItemsEls.length; i++) {
-        menuItemsEls[i].addEventListener('click', function(e) {
-            const price = e.target.dataset.price;
-            total.innerText = (+total.innerText + +price).toFixed(2);
-            items.innerText = +items.innerText + 1;
-        })
-    }
+  for (let i = 0; i < menuItemsEls.length; i++) {
+    menuItemsEls[i].addEventListener("click", function (e) {
+      const price = e.target.dataset.price;
+      total.innerText = (+total.innerText + +price).toFixed(2);
+      items.innerText = +items.innerText + 1;
+    });
+  }
 </script>
 ```
 
@@ -121,38 +121,38 @@ And here it is with event delegation (you could also delegate these events to th
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Menu</title>
-</head>
-<body>
+  </head>
+  <body>
     <div>
-        <h1>Menu</h1>
-        <p>Click to add to cart</p>
-        <p>Cart</p>
-        <p>Items: <span class="menu__items">0</span></p>
-        <p>Total: $<span class="menu__cost">0.00</span></p>
+      <h1>Menu</h1>
+      <p>Click to add to cart</p>
+      <p>Cart</p>
+      <p>Items: <span class="menu__items">0</span></p>
+      <p>Total: $<span class="menu__cost">0.00</span></p>
     </div>
 
     <ul class="menu">
-        <li><button class="menu__item" data-price="2.00">Iced Coffee</button></li>
-        <li><button class="menu__item" data-price="3.00">Nice Coffee</button></li>
-        <li><button class="menu__item" data-price="4.00">Latte</button></li>
+      <li><button class="menu__item" data-price="2.00">Iced Coffee</button></li>
+      <li><button class="menu__item" data-price="3.00">Nice Coffee</button></li>
+      <li><button class="menu__item" data-price="4.00">Latte</button></li>
     </ul>
-</body>
+  </body>
 </html>
 
 <script>
-    const total = document.querySelector('.menu__cost');
-    const items = document.querySelector('.menu__items');
-    document.addEventListener('click', function(e) {
-        if(e.target.classList.contains('menu__item')) {
-            const price = e.target.dataset.price;
-            total.innerText = (+total.innerText + +price).toFixed(2);
-            items.innerText = +items.innerText + 1;
-        }
-    })
+  const total = document.querySelector(".menu__cost");
+  const items = document.querySelector(".menu__items");
+  document.addEventListener("click", function (e) {
+    if (e.target.classList.contains("menu__item")) {
+      const price = e.target.dataset.price;
+      total.innerText = (+total.innerText + +price).toFixed(2);
+      items.innerText = +items.innerText + 1;
+    }
+  });
 </script>
 ```
 
@@ -165,55 +165,56 @@ Event delegation on forms allows you control and treat all inputs in the form th
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Forms</title>
     <style>
-        .error{
-            display: none;
-            &:has(+ form input[data-filled="false"]) {
-                display: block;
-            }
+      .error {
+        display: none;
+        &:has(+ form input[data-filled="false"]) {
+          display: block;
         }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <p class="error" style="color:red">Not all the fields are filled out</p>
     <form>
-        <input data-filled="false" type="text" name="name" placeholder="Name">
-        <input data-filled="false" type="text" name="email" placeholder="Email">
-        <input data-filled="false" type="text" name="phone" placeholder="Phone">
-        <button type="submit">Submit</button>
+      <input data-filled="false" type="text" name="name" placeholder="Name" />
+      <input data-filled="false" type="text" name="email" placeholder="Email" />
+      <input data-filled="false" type="text" name="phone" placeholder="Phone" />
+      <button type="submit">Submit</button>
     </form>
-</body>
+  </body>
 
-<script>
-    const form = document.querySelector('form');
-    const btn = document.querySelector('button');
-    const error = document.querySelector('.error');
+  <script>
+    const form = document.querySelector("form");
+    const btn = document.querySelector("button");
+    const error = document.querySelector(".error");
     let isFilled = false;
 
-    form.addEventListener('change', function(e) {
-        if(e.target.tagName !== 'INPUT') return;
+    form.addEventListener("change", function (e) {
+      if (e.target.tagName !== "INPUT") return;
 
-        if(e.target.value.trim() === '') {
-            e.target.dataset.filled = 'false';
-        } else {
-            e.target.dataset.filled = 'true';
-        }
+      if (e.target.value.trim() === "") {
+        e.target.dataset.filled = "false";
+      } else {
+        e.target.dataset.filled = "true";
+      }
 
-        isFilled = [...document.querySelectorAll('input')].every(input => input.dataset.filled === 'true');
-        btn.disabled = !isFilled;
-    })
+      isFilled = [...document.querySelectorAll("input")].every(
+        (input) => input.dataset.filled === "true",
+      );
+      btn.disabled = !isFilled;
+    });
 
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const formData = new FormData(form);
-        console.log(Object.fromEntries(formData));
-    })
-</script>
-
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const formData = new FormData(form);
+      console.log(Object.fromEntries(formData));
+    });
+  </script>
 </html>
 ```
 
@@ -222,10 +223,10 @@ Event delegation on forms allows you control and treat all inputs in the form th
 If you'd like to create a global function for event delegation, you could do something like this:
 
 ```ts
-function on(el=document, ev: keyof DocumentEventMap, cb: (e: Event) => void) {
-    el.addEventListener(ev, cb);
+function on(el = document, ev: keyof DocumentEventMap, cb: (e: Event) => void) {
+  el.addEventListener(ev, cb);
 
-    return () => el.removeEventListener(ev, cb);
+  return () => el.removeEventListener(ev, cb);
 }
 ```
 
@@ -234,4 +235,3 @@ Using a function like this would ensure that you always target your document wit
 ## Final note
 
 So should you use event delegation? Personally, I usually only use event delegation when dealing with lists or collections of the same element or working with forms.
-
