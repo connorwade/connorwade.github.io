@@ -1,21 +1,20 @@
 ---
-import HeaderLink from "./HeaderLink.astro";
 import NavMenu from "./NavMenu.astro";
-import Icon from "./Icon.astro";
 import { SITE_TITLE, HEADER_LINKS } from "../consts";
 import ThemeController from "./ThemeController.astro";
+import Typography from "./typography/Typography.astro";
 ---
 
-<header class="navbar bg-base-300 px-3 lg:px-8">
-  <div class="navbar-start">
-    <a href="/"
-      ><h2 class="hover:text-accent text-2xl font-extrabold">
-        {SITE_TITLE}
-      </h2></a
-    >
+<header class="navbar bg-base-200 px-6 shadow-sm">
+  <div class="flex-1">
+    <a href="/">
+      <Typography as="h2" variant="display" size="sm" class="hover:text-primary"
+        >CA</Typography
+      >
+    </a>
   </div>
 
-  <div class="navbar-end">
+  <div class="flex shrink-0 gap-2">
     <NavMenu links={HEADER_LINKS} />
     <ThemeController />
   </div>

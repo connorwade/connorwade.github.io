@@ -1,0 +1,46 @@
+---
+interface Props {
+  as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span";
+  variant?: "display" | "headline" | "title" | "body" | "label";
+  size?: "sm" | "md" | "lg";
+  class: HTMLDivElement["className"];
+}
+
+const {
+  as = "p",
+  variant = "body",
+  size = "md",
+  class: className,
+} = Astro.props;
+
+const Tag = as;
+---
+
+<Tag
+  class:list={[
+    {
+      "text-display-lg font-display": variant === "display" && size === "lg",
+      "text-display font-display": variant === "display" && size === "md",
+      "text-display-sm font-display": variant === "display" && size === "sm",
+
+      "text-headline-lg": variant === "headline" && size === "lg",
+      "text-headline": variant === "headline" && size === "md",
+      "text-headline-sm": variant === "headline" && size === "sm",
+
+      "text-title-lg": variant === "title" && size === "lg",
+      "text-title": variant === "title" && size === "md",
+      "text-title-sm": variant === "title" && size === "sm",
+
+      "text-body-lg": variant === "body" && size === "lg",
+      "text-body": variant === "body" && size === "md",
+      "text-body-sm": variant === "body" && size === "sm",
+
+      "text-label-lg": variant === "label" && size === "lg",
+      "text-label": variant === "label" && size === "md",
+      "text-label-sm": variant === "label" && size === "sm",
+    },
+    className,
+  ]}
+>
+  <slot />
+</Tag>

@@ -3,4 +3,7 @@
 
 export const SITE_TITLE = "Coding Akita";
 export const SITE_DESCRIPTION = "Welcome to my website!";
-export const HEADER_LINKS = [{ content: "Blog", link: "/blog" }];
+export const HEADER_LINKS = [
+  { content: "Blog", link: "/blog" },
+  { content: "About", link: "/about" },
+];

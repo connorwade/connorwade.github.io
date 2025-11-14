@@ -10,27 +10,26 @@ interface Props {
   postSlug: string;
 }
 import FormattedDate from "./FormattedDate.astro";
+import Typography from "./typography/Typography.astro";
 let { postData, postSlug } = Astro.props;
 ---
 
 <a
-  class="article-card group mt-8 w-11/12 border-b border-dashed lg:w-1/2"
+  class="card bg-base-100 card-md hover:border-accent w-96 border border-transparent shadow-sm transition-colors"
   href={`/blog/${postSlug}`}
-  ><h2
-    class="text-base-content group-hover:text-accent group-focus:text-accent text-lg font-bold"
-  >
-    {postData.title}
-  </h2>
-  <div class="post-meta">
-    <span class="post-publish text-base-content text-sm"
-      >Published on <FormattedDate date={postData.pubDate} /></span
+>
+  <div class="card-body">
+    <Typography variant="title" as="h3">{postData.title}</Typography>
+    <Typography variant="title" as="h6" size="sm"
+      >Published on <FormattedDate date={postData.pubDate} /></Typography
     >
-    <div class="content py-2">
-      <p>{postData.description}</p>
-    </div><p
-      class="text-accent group-hover:text-neutral-content group-focus:text-neutral-content mb-5 text-sm group-hover:underline"
-    >
-      Read More
-    </p>
+    <Typography variant="body" as="p">
+      {postData.description}
+    </Typography>
+    <div class="card-actions justify-end">
+      <button class="btn btn-primary">
+        <Typography variant="label" as="span">Read more</Typography>
+      </button>
+    </div>
   </div>
 </a>

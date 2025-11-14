@@ -6,46 +6,22 @@ import Icon from "../components/Icon.astro";
 import { getBlogs, sortBlogs } from "../utils";
 import { Image } from "astro:assets";
 import headshot from "../assets/good_enough2.png";
+import Typography from "../components/typography/Typography.astro";
 
 const posts = await getBlogs();
 const sortedPosts = sortBlogs(posts);
 ---
 
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
-  <main>
-    <section class="mt-10 mb-4 flex flex-col items-center justify-center">
-      <div class="avatar my-5 flex justify-center">
-        <div class="w-32 rounded-full">
-          <Image src={headshot} alt="A headshot of Connor Wade" />
-        </div>
-      </div>
-      <h3 class="text-center text-lg">Engineer, Software Developer</h3>
-      <p class="mt-5 w-screen px-2 text-center text-base md:w-2/3 lg:w-1/2">
-        I am a Fullstack Engineer and tech lead. I regularly work with
-        TypeScript, JavaScript, Go, Python, and Rust. I am currently interested
-        in WASM (and other bytecode interpreters), component libraries focused
-        on design, open-source development, client and server performance, and
-        AI integration.
-      </p>
+  <main class="px-6 py-4">
+    <Typography as="h2" variant="display" class="text-primary"
+      >I'm not a furry you weirdo</Typography
+    >
+    <Typography as="h5" variant="title"
+      >I'm an engineer, software developer</Typography
+    >
 
-      <p
-        class="mt-2 mb-5 w-screen px-2 text-center text-base md:w-2/3 lg:w-1/2"
-      >
-        Check out my open-source projects like spamlet, a simple crawler plugin
-        for Playwright.
-      </p>
-      <div class="links flex w-1/4 flex-row justify-around md:w-1/6">
-        <a href="https://github.com/connorwade" title="My Github"
-          ><Icon icon="github" /></a
-        >
-        <a
-          href="https://www.linkedin.com/in/connor-wade-2094681a0/"
-          title="My Linkedin"><Icon icon="linkedin" /></a
-        >
-      </div>
-    </section>
-
-    <div class="post-list flex flex-col items-center">
+    <div class="mt-8 flex flex-row flex-wrap items-center gap-4">
       {
         sortedPosts.map((post) => {
           return <ArticleCard postData={post.data} postSlug={post.slug} />;

@@ -72,14 +72,34 @@
 
 @plugin "daisyui" {
   themes:
+    /* silk --default,
+    coffee --prefersdark; */
     akita-light --default,
     akita-dark --prefersdark;
 }
 
+@font-face {
+  font-family: "DMSerifDisplay";
+  src: url("/fonts/DMSerifDisplay-Regular.ttf");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "EBGaramond";
+  src: url("/fonts/EBGaramond-VariableFont_wght.ttf") format("ttf");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme {
   /* Typography */
-  /* --font-display: 'DMSerifDisplay', serif;
-	--font-display--font-variation-settings: 'opsz' 36; */
+  --font-display: "DMSerifDisplay", serif;
+  --font-display--font-variation-settings: "opsz" 36;
+
+  --default-font-family: "EBGaramond", serif;
 
   /* Display Large */
   --text-display-lg: 3.6rem;
@@ -164,6 +184,13 @@
   --text-label-sm--line-height: 1.6;
   --text-label-sm--line-spacing: 0.5px;
   --text-label--font-weight: 500;
+}
+
+@layer base {
+  html,
+  body {
+    font-family: "EBGaramond" serif;
+  }
 }
 
 @custom-variant aria-current-page (&[aria-current="page"]);
