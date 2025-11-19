@@ -2,10 +2,7 @@
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ArticleCard from "../components/ArticleCard.astro";
-import Icon from "../components/Icon.astro";
 import { getBlogs, sortBlogs } from "../utils";
-import { Image } from "astro:assets";
-import headshot from "../assets/good_enough2.png";
 import Typography from "../components/typography/Typography.astro";
 
 const posts = await getBlogs();

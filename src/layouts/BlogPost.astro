@@ -3,10 +3,14 @@ import type { CollectionEntry } from "astro:content";
 import FormattedDate from "../components/FormattedDate.astro";
 import BaseLayout from "./BaseLayout.astro";
 import ProgressMenu from "../components/ProgressMenu.astro";
+import { ChevronsUpDown } from "@lucide/astro";
+import type { MarkdownHeading } from "astro";
+import Typography from "../components/typography/Typography.astro";
 
-type Props = CollectionEntry<"blog">["data"];
+type Props = { headings: MarkdownHeading[] } & CollectionEntry<"blog">["data"];
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { headings, title, description, pubDate, updatedDate, heroImage } =
+  Astro.props;
 
 let heroBackground =
   "background: linear-gradient(oklch(var(--a)), oklch(var(--s)));";
@@ -16,12 +20,13 @@ if (heroImage) {
 ---
 
 <BaseLayout title={title} description={description}>
-  <div class="progress-wrapper sticky top-0 flex w-full justify-center">
+  <!-- <div class="progress-wrapper sticky top-0 flex w-full justify-center">
     <progress
+      x-ref="progress"
       class="progress progress-accent w-full opacity-80"
       value="100"
       max="100"></progress>
-  </div>
+  </div> -->
   <main class="flex flex-col justify-center">
     <div class="hero min-h-[60vh]" style={heroBackground}>
       <div class="hero-overlay bg-opacity-75"></div>
@@ -42,12 +47,37 @@ if (heroImage) {
         </div>
       </div>
     </div>
-    <article
-      class="prose lg:prose-lg prose-p:text-base-content prose-li:text-base-content mx-auto w-screen max-w-4xl p-8"
-    >
-      <hr />
+    <article class="prose max-w-4xl p-8">
+      <hr id="top" />
       <slot />
     </article>
   </main>
-  <ProgressMenu title={title} />
+  <div class="dropdown dropdown-top fixed right-1/2 bottom-4">
+    <div tabindex="0" role="button" class="btn btn-primary">
+      <ChevronsUpDown />
+      <span class="font-bold">
+        <Typography variant="label">{title}</Typography></span
+      >
+    </div>
+    <ul
+      tabindex="-1"
+      class="menu dropdown-content bg-base-200 w-full overflow-hidden rounded-lg p-3 transition-all"
+    >
+      <li>
+        <a href="#top">Return to top</a>
+      </li>
+      {
+        headings.map((heading) => {
+          const href = `#${heading.slug}`;
+          return (
+            <li>
+              <a href={href}>
+                <Typography variant="label">{heading.text}</Typography>
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
 </BaseLayout>
