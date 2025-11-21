@@ -15,7 +15,7 @@ let { postData, postSlug } = Astro.props;
 ---
 
 <a
-  class="card bg-base-100 card-md hover:border-accent h-full w-96 border border-transparent shadow-sm transition-colors"
+  class="card bg-base-100 card-md shadow-base-300 block h-full w-96 grow border border-transparent shadow-sm transition-shadow hover:shadow-lg"
   href={`/blog/${postSlug}`}
 >
   <div class="card-body">
@@ -27,9 +27,7 @@ let { postData, postSlug } = Astro.props;
       {postData.description}
     </Typography>
     <div class="card-actions justify-end">
-      <button class="btn btn-primary">
-        <Typography variant="label" as="span">Read more</Typography>
-      </button>
+      <Typography variant="body" as="span">Read more</Typography>
     </div>
   </div>
 </a>

@@ -3,7 +3,7 @@ import type { CollectionEntry } from "astro:content";
 import FormattedDate from "../components/FormattedDate.astro";
 import BaseLayout from "./BaseLayout.astro";
 import ProgressMenu from "../components/ProgressMenu.astro";
-import { ChevronsUpDown } from "@lucide/astro";
+import { ChevronsDownUp, ChevronsUpDown } from "@lucide/astro";
 import type { MarkdownHeading } from "astro";
 import Typography from "../components/typography/Typography.astro";
 
@@ -13,7 +13,7 @@ const { headings, title, description, pubDate, updatedDate, heroImage } =
   Astro.props;
 
 let heroBackground =
-  "background: linear-gradient(oklch(var(--a)), oklch(var(--s)));";
+  "background: linear-gradient(var(--color-primary), var(--color-secondary));";
 if (heroImage) {
   heroBackground = `background-image: url(${heroImage.src});`;
 }
@@ -47,21 +47,55 @@ if (heroImage) {
         </div>
       </div>
     </div>
-    <article class="prose max-w-4xl p-8">
+    <article class="prose max-w-4xl p-8 md:mx-auto">
       <hr id="top" />
       <slot />
     </article>
   </main>
-  <div class="dropdown dropdown-top fixed right-1/2 bottom-4">
-    <div tabindex="0" role="button" class="btn btn-primary">
+  <div class="fab">
+    <!-- a focusable div with tabindex is necessary to work on all browsers. role="button" is necessary for accessibility -->
+    <div tabindex="0" role="button" class="btn btn-lg btn-circle btn-primary">
       <ChevronsUpDown />
-      <span class="font-bold">
-        <Typography variant="label">{title}</Typography></span
+    </div>
+
+    <!-- close button should not be focusable so it can close the FAB when clicked. It's just a visual placeholder -->
+    <div class="fab-close">
+      <span class="btn btn-circle btn-lg btn-secondary">
+        <ChevronsDownUp />
+      </span>
+    </div>
+
+    <!-- buttons that show up when FAB is open -->
+    {
+      headings.reverse().map((heading) => {
+        const href = `#${heading.slug}`;
+        return (
+          <div>
+            <a href={href} class="btn">
+              <Typography variant="label">{heading.text}</Typography>
+            </a>
+          </div>
+        );
+      })
+    }
+    <div>
+      <a href="#top" class="btn">
+        <Typography variant="label">Return to top</Typography></a
       >
+    </div>
+  </div>
+
+  <!-- <div class="dropdown dropdown-top fixed right-4 bottom-4 md:right-1/2">
+    <div tabindex="0" role="button" class="group btn btn-primary">
+      <ChevronsUpDown class="group-focus-within:hidden group-focus:hidden" />
+      <ChevronsDownUp
+        class="hidden group-focus-within:block group-focus:block"
+      />
+      <Typography class="hidden md:inline" variant="label">{title}</Typography>
     </div>
     <ul
       tabindex="-1"
-      class="menu dropdown-content bg-base-200 w-full overflow-hidden rounded-lg p-3 transition-all"
+      class="menu dropdown-content bg-base-200 w-fit min-w-44 overflow-hidden rounded-lg p-3 transition-all"
     >
       <li>
         <a href="#top">Return to top</a>
@@ -79,5 +113,5 @@ if (heroImage) {
         })
       }
     </ul>
-  </div>
+  </div> -->
 </BaseLayout>

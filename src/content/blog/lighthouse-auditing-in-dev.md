@@ -3,7 +3,7 @@ title: "Tutorial: Adding Lighthouse to Your Code Base"
 description: "How to setup Lighthouse audits within your code that are reusable and versatile."
 pubDate: "July 1 2023"
 heroImage: "../../assets/lighthouse.jpg"
-draft: false
+draft: true
 ---
 
 _The Lighthouse Node API has changed quite a bit since I first wrote this article. Unfortunately, this post probably currently serves as way to see how to do a general integration rather than a new one._

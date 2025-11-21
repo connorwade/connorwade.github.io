@@ -3,12 +3,17 @@ import NavMenu from "./NavMenu.astro";
 import { SITE_TITLE, HEADER_LINKS } from "../consts";
 import ThemeController from "./ThemeController.astro";
 import Typography from "./typography/Typography.astro";
+import Logo from "../../public/coding_akita.svg";
 ---
 
 <header class="navbar bg-base-200 px-6 shadow-sm">
   <div class="flex-1">
-    <a href="/">
-      <Typography as="h2" variant="display" size="sm" class="hover:text-primary"
+    <a href="/" class="hover:text-secondary flex flex-row items-center gap-2">
+      <Logo height={48} width={48} fill="currentColor" />
+      <Typography as="h2" variant="display" size="sm" class="hidden md:inline"
+        >CodingAkita</Typography
+      >
+      <Typography as="h2" variant="display" size="sm" class="inline md:hidden"
         >CA</Typography
       >
     </a>

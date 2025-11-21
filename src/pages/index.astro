@@ -11,16 +11,19 @@ const sortedPosts = sortBlogs(posts);
 
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
   <main class="px-6 py-4">
-    <Typography as="h2" variant="display" class="text-primary"
+    <Typography as="h2" variant="display" class="text-primary mb-2"
       >I'm not a furry you weirdo</Typography
     >
-    <Typography as="h5" variant="title"
+    <Typography as="h5" variant="title" class="mb-4"
       >I'm an engineer, software developer</Typography
     >
 
-    <div class="mt-8 flex flex-row flex-wrap items-center gap-4">
+    <div
+      style="background: linear-gradient(var(--color-primary), var(--color-secondary));"
+      class="flex h-full flex-wrap items-stretch justify-center gap-4 rounded-lg px-4 py-8"
+    >
       {
-        sortedPosts.map((post) => {
+        sortedPosts.slice(0, 3).map((post) => {
           return <ArticleCard postData={post.data} postSlug={post.slug} />;
         })
       }

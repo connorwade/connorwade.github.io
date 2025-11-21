@@ -2,7 +2,7 @@
 title: "Go and Vite Together"
 description: "A quick guide to using Vite as a frontend for your Go API"
 pubDate: "March 24 2024"
-draft: false
+draft: true
 ---
 
 Are you one of the other five people on this planet who also happen to use Vite and Go without Echo, Gorilla, or Gin? Are you interested in the prospect of using them together? Well hold on to your undershirts while we go on a fun little adventure of using them together.
