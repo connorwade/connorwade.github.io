@@ -9,7 +9,7 @@ export async function getBlogs() {
 
 export function sortBlogs(collection: CollectionEntry<"blog">[]) {
   const posts = collection.sort(
-    (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+    (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
   );
   return posts;
 }

@@ -3,6 +3,7 @@ title: "How to: JavaScript State Management Without Libraries - Part 3"
 description: "How to use signal state management on static websites"
 pubDate: "April 18 2024"
 draft: false
+tags: ["coding"]
 ---
 
 In the first two parts of this series I showed how we could create common state management hooks such as `useState` and `useStore`. In this part, I want to review one of the most in vogue state management patterns: the signal. Signals have received a lot of attention in the frontend framework community. The basic promise is simple enough: signals are a type of state that only update what has actually changed.

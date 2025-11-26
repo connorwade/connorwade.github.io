@@ -3,7 +3,7 @@ title: "Tutorial: Adding Lighthouse to Your Code Base"
 description: "How to setup Lighthouse audits within your code that are reusable and versatile."
 pubDate: "July 1 2023"
 heroImage: "../../assets/lighthouse.jpg"
-draft: false
+draft: true
 ---
 
 _The Lighthouse Node API has changed quite a bit since I first wrote this article. Unfortunately, this post probably currently serves as way to see how to do a general integration rather than a new one._
@@ -128,7 +128,7 @@ async function performanceAudit() {
   console.log("Report is done for", runnerResult.lhr.finalDisplayedUrl);
   console.log(
     "Performance score was",
-    runnerResult.lhr.categories.performance.score * 100
+    runnerResult.lhr.categories.performance.score * 100,
   );
 
   await page.close();
@@ -281,7 +281,7 @@ import { chromium } from "@playwright/test";
 import { preview } from "vite";
 
 const pathIndex = process.argv.findIndex((arg) =>
-  /^(?:-p|--path)=\/\S*$/.test(arg)
+  /^(?:-p|--path)=\/\S*$/.test(arg),
 );
 const pathSet = pathIndex > 0;
 
@@ -334,7 +334,7 @@ async function performanceAudit() {
     console.log("Report is done for", runnerResult.lhr.finalDisplayedUrl);
     console.log(
       "Performance score was",
-      runnerResult.lhr.categories.performance.score * 100
+      runnerResult.lhr.categories.performance.score * 100,
     );
 
     await page.close();
@@ -359,7 +359,7 @@ import { chromium, devices } from "@playwright/test"; // Update the dependencies
 import { preview } from "vite";
 
 const pathIndex = process.argv.findIndex((arg) =>
-  /^(?:-p|--path)=\/\S*$/.test(arg)
+  /^(?:-p|--path)=\/\S*$/.test(arg),
 );
 const pathSet = pathIndex > 0;
 
@@ -367,12 +367,12 @@ const allIndex = process.argv.findIndex((arg) => /^(?:-a|--all)$/.test(arg));
 const allSet = allIndex > 0;
 
 const deviceIndex = process.argv.findIndex((arg) =>
-  /^(?:-d|--device)$/.test(arg)
+  /^(?:-d|--device)$/.test(arg),
 );
 const deviceSet =
   deviceIndex > 0 &&
   Object.keys(devices).includes(
-    process.argv[pathIndex].split("=")[1].replace('"', "")
+    process.argv[pathIndex].split("=")[1].replace('"', ""),
   );
 // Check that the user added a device argument, but also that the argument is valid
 
@@ -425,13 +425,13 @@ async function performanceAudit() {
     const fileName = path === "/" ? `home` : path.slice(1).replaceAll("/", "-");
     fs.writeFileSync(
       `${resultsDir}/lighthouse-${fileName}-${args.device}.html`,
-      reportHtml
+      reportHtml,
     ); // Update the fileName variable so that it includes the devices
 
     console.log("Report is done for", runnerResult.lhr.finalDisplayedUrl);
     console.log(
       "Performance score was",
-      runnerResult.lhr.categories.performance.score * 100
+      runnerResult.lhr.categories.performance.score * 100,
     );
 
     await page.close();

@@ -1,0 +1,50 @@
+---
+import { Sun, MoonStar } from "@lucide/astro";
+---
+
+<label class="swap swap-rotate">
+  <!-- this hidden checkbox controls the state -->
+  <input
+    type="checkbox"
+    class="hidden"
+    id="theme-controller"
+    value="akita-light"
+  />
+
+  <!-- sun icon -->
+  <Sun class="swap-off size-6" />
+
+  <!-- moon icon -->
+  <MoonStar class="swap-on size-6" />
+</label>
+
+<script>
+  let theme = "light";
+  let DARK_THEME = "akita-dark";
+  let LIGHT_THEME = "akita-light";
+  const htmlEl = document.querySelector<HTMLHtmlElement>("html")!;
+  const inputEl =
+    document.querySelector<HTMLInputElement>("#theme-controller")!;
+
+  const isNewVistor = !("theme" in localStorage);
+  const userPrefersDark = window.matchMedia(
+    "(prefers-color-scheme:dark)",
+  ).matches;
+  const themeIsStored = localStorage.theme === "dark";
+
+  if (themeIsStored || (isNewVistor && userPrefersDark)) {
+    htmlEl.dataset.theme = DARK_THEME;
+    theme = "dark";
+    inputEl.checked = true;
+  } else {
+    htmlEl.dataset.theme = LIGHT_THEME;
+    theme = "light";
+  }
+  function handleThemeSwitch() {
+    theme = theme === "light" ? "dark" : "light";
+    htmlEl.dataset.theme = theme === "dark" ? DARK_THEME : LIGHT_THEME;
+    localStorage.theme = theme;
+  }
+
+  inputEl.addEventListener("change", handleThemeSwitch);
+</script>

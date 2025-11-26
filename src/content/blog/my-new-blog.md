@@ -3,6 +3,7 @@ title: 'Creating My New Blog From "Scratch" in a Few Hours'
 description: "How I used Astro and TailwindCSS to build a responsible, performant, bleeding-edge website in a few hours"
 pubDate: "May 09 2023"
 heroImage: "../../assets/placeholder-hero.jpg"
+draft: true
 ---
 
 Well, I've finally done what I've threatened to do for a while: I've replaced my old blog. And more importantly, I did it in less than 24 hours and with only a few hours of work. In this post, I want to go over what tools I used to do it and how I did it. There's nothing groundbreaking in this post. I just wanted to share how easy things can be in Web Development with the proper setup.

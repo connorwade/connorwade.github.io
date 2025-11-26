@@ -2,12 +2,13 @@
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import "../styles/global.css";
+import { SITE_TITLE } from "../consts";
 const { title, description } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en" data-theme="nord">
+<html lang="en" data-theme="silk" class="scroll-smooth">
   <head>
     <BaseHead title={title} description={description} />
   </head>

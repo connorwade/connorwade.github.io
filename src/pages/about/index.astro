@@ -1,0 +1,41 @@
+---
+import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import headshot from "../../assets/good_enough2.png";
+import { Image } from "astro:assets";
+import Typography from "../../components/typography/Typography.astro";
+import SocialBar from "../../components/SocialBar.astro";
+---
+
+<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+  <main class="px-6 py-4">
+    <section class="mx-auto flex max-w-4xl flex-col items-center gap-4">
+      <div class="avatar flex justify-center">
+        <div class="mask mask-squircle w-32">
+          <Image src={headshot} alt="A headshot of Connor Wade" />
+        </div>
+      </div>
+      <div>
+        <Typography variant="headline">Connor Wade</Typography>
+        <Typography variant="title" size="md" class="text-center"
+          >Software Engineer</Typography
+        >
+      </div>
+
+      <SocialBar />
+      <Typography as="p" variant="body" size="lg">
+        Connor is an experienced engineer who has worked on award winning sites
+        and for start-ups. He has been a lead engineer and manager for the last
+        3 years of his career. He also has built education and cultural
+        resources and initatives within companies. When not coding, Connor
+        enjoys making music, lifting heavy weights, and writing.
+      </Typography>
+      <Typography as="p" variant="body" size="lg">
+        <b>Why is he called the Coding Akita?</b> Coding Akita is actually in honor
+        of his akita, Attie, who passed away in 2022. However, the akita spirit of
+        being big, loud, and unphased is the perfect metaphor for the philosophy
+        captured in the Coding Akita name.
+      </Typography>
+    </section>
+  </main>
+</BaseLayout>

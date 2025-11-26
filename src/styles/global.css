@@ -1,0 +1,198 @@
+@import "tailwindcss";
+
+@plugin "@tailwindcss/typography";
+
+@plugin "daisyui/theme" {
+  name: "akita-dark";
+  default: false;
+  prefersdark: true;
+  color-scheme: "dark";
+  --color-base-100: rgb(14, 20, 22);
+  --color-base-200: oklch(0.14 0.01 220.1);
+  --color-base-300: oklch(0.095 0.01 220.1);
+  --color-base-content: rgb(222, 227, 229);
+  --color-primary: rgb(130, 211, 227);
+  --color-primary-content: rgb(0, 54, 62);
+  --color-secondary: rgb(177, 203, 209);
+  --color-secondary-content: rgb(28, 52, 57);
+  --color-accent: rgb(188, 197, 235);
+  --color-accent-content: rgb(38 47 77);
+  --color-neutral: rgb(27 33 34);
+  --color-neutral-content: rgb(222, 227, 229);
+  --color-info: oklch(0.821 0.37 211.6);
+  --color-info-content: rgb(0, 54, 62);
+  --color-success: oklch(0.821 0.229 170.5);
+  --color-success-content: rgb(0, 54, 62);
+  --color-warning: oklch(0.506 0.193 102.8);
+  --color-warning-content: oklch(0.922 0 0);
+  --color-error: rgb(255 180 171);
+  --color-error-content: rgb(105 0 5);
+  --radius-selector: 1rem;
+  --radius-field: 1rem;
+  --radius-box: 0.5rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
+
+@plugin "daisyui/theme" {
+  name: "akita-light";
+  default: true;
+  prefersdark: false;
+  color-scheme: "light";
+  --color-base-100: rgb(245 250 252);
+  --color-base-200: oklch(0.901 0.006 223.5);
+  --color-base-300: oklch(0.875 0.006 223.5);
+  --color-base-content: rgb(23 29 30);
+  --color-primary: rgb(0 104 118);
+  --color-primary-content: rgb(255 255 255);
+  --color-secondary: rgb(74 98 103);
+  --color-secondary-content: rgb(255 255 255);
+  --color-accent: rgb(84 93 126);
+  --color-accent-content: rgb(255 255 255);
+  --color-neutral: rgb(233 239 240);
+  --color-neutral-content: rgb(23 29 30);
+  --color-info: oklch(0.506 0.193 195.5);
+  --color-info-content: oklch(98% 0.019 200.873);
+  --color-success: oklch(0.506 0.193 173.8);
+  --color-success-content: oklch(98% 0.014 180.72);
+  --color-warning: oklch(0.506 0.193 100.4);
+  --color-warning-content: oklch(98% 0.022 95.277);
+  --color-error: rgb(186 26 26);
+  --color-error-content: rgb(255 255 255);
+  --radius-selector: 1rem;
+  --radius-field: 1rem;
+  --radius-box: 0.5rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
+
+@plugin "daisyui" {
+  themes:
+    /* silk --default,
+    coffee --prefersdark; */
+    akita-light --default,
+    akita-dark --prefersdark;
+}
+
+@font-face {
+  font-family: "DMSerifDisplay";
+  src: url("/fonts/DMSerifDisplay-Regular.ttf");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "EBGaramond";
+  src: url("/fonts/EBGaramond-VariableFont_wght.ttf") format("ttf");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  /* Typography */
+  --font-display: "DMSerifDisplay", serif;
+  --font-display--font-variation-settings: "opsz" 36;
+
+  --default-font-family: "EBGaramond", serif;
+
+  /* Display Large */
+  --text-display-lg: 3.6rem;
+  --text-display-lg--line-height: 1.1;
+  --text-display-lg--letter-spacing: 0.33px;
+
+  /* Display Medium */
+  --text-display: 2.8125rem;
+  --text-display--line-height: 1.156;
+  --text-display--letter-spacing: 0;
+
+  /* Display Small */
+  --text-display-sm: 2.25rem;
+  --text-display-sm--line-height: 1.2;
+  --text-display-sm--line-spacing: 0;
+
+  /*  Headlines */
+  /* Headline Large */
+  --text-headline-lg: 2rem;
+  --text-headline-lg--line-height: 1.25;
+  --text-headline-lg--line-spacing: 0;
+
+  /* Headline Medium */
+  --text-headline: 1.75rem;
+  --text-headline--line-height: 1.3;
+  --text-headline--line-spacing: 0;
+
+  /* Headline Small */
+  --text-headline-sm: 1.5rem;
+  --text-headline-sm--line-height: 1.3;
+  --text-headline-sm--line-spacing: 0;
+
+  /* Titles */
+  /* Title Large */
+  --text-title-lg: 1.375rem;
+  --text-title-lg--line-height: 1.27;
+  --text-title-lg--line-spacing: 0;
+
+  /* Title Medium */
+  --text-title: 1rem;
+  --text-title--line-height: 1.5;
+  --text-title--line-spacing: 0.15px;
+  --text-title--font-weight: 500;
+
+  /* Title Small */
+  --text-title-sm: 0.875rem;
+  --text-title-sm--line-height: 1.4;
+  --text-title-sm--line-spacing: 0.1px;
+  --text-title-sm--font-weight: 500;
+
+  /* Body */
+  /* Body Large */
+  --text-body-lg: 1rem;
+  --text-body-lg--line-height: 1.5;
+  --text-body-lg--line-spacing: 0.5px;
+
+  /* Body Medium */
+  --text-body: 0.875rem;
+  --text-body--line-height: 1.4;
+  --text-body--line-spacing: 0.25px;
+
+  /* Body Small */
+  --text-body-sm: 0.75rem;
+  --text-body-sm--line-height: 1.25;
+  --text-body-sm--line-spacing: 0.4px;
+
+  /* Labels */
+  /* Label Large */
+  --text-label-lg: 0.875rem;
+  --text-label-lg--line-height: 1.4;
+  --text-label-lg--line-spacing: 0.1px;
+  --text-label-lg--font-weight: 500;
+
+  /* Label Medium */
+  --text-label: 0.75rem;
+  --text-label--line-height: 1.25;
+  --text-label--line-spacing: 0.5px;
+  --text-label--font-weight: 500;
+
+  /* Label Small */
+  --text-label-sm: 0.625rem;
+  --text-label-sm--line-height: 1.6;
+  --text-label-sm--line-spacing: 0.5px;
+  --text-label--font-weight: 500;
+}
+
+@layer base {
+  html,
+  body {
+    font-family: "EBGaramond" serif;
+  }
+}
+
+@custom-variant aria-current-page (&[aria-current="page"]);

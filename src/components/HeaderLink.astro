@@ -1,5 +1,6 @@
 ---
 import type { HTMLAttributes } from "astro/types";
+import Typography from "./typography/Typography.astro";
 
 type Props = HTMLAttributes<"a">;
 
@@ -10,5 +11,7 @@ const isActive = href === pathname || href === pathname.replace(/\/$/, "");
 ---
 
 <a href={href} class:list={[className, { active: isActive }]} {...props}>
-  <slot />
-</a> 
+  <Typography variant="body" as="span" size="lg">
+    <slot />
+  </Typography>
+</a>

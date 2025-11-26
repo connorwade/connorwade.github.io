@@ -3,7 +3,7 @@ title: "In Defense of JSDocs"
 heroImage: "../../assets/typescript.jpg"
 description: "Why are developers using JSDocs over TypeScript?"
 pubDate: "May 16 2023"
-draft: false
+draft: true
 ---
 
 Recently the Svelte team shifted their codebase type annotations from TypeScript to JSDocs. It in no way affected the end users of the library and Sveltekit had already been using JSDocs for almost a year. However, while being just the internal preference of a single team, this change sent a ripple through the developer community. "How could anyone, particularly the Svelte team, not use TypeScript?" The creator of Svelte, Rich Harris, stated that he did not understand why this has been so controversial in the developer community.

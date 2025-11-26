@@ -2,10 +2,18 @@ import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 
-import tailwind from "@astrojs/tailwind";
+import tailwindcss from "@tailwindcss/vite";
+
+import svelte from "@astrojs/svelte";
+
+import alpinejs from "@astrojs/alpinejs";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://connorwade.github.io",
-  integrations: [mdx(), sitemap(), tailwind()],
+  site: "https://www.codingakita.com",
+  integrations: [mdx(), sitemap(), svelte(), alpinejs()],
+
+  vite: {
+    plugins: [tailwindcss()],
+  },
 });

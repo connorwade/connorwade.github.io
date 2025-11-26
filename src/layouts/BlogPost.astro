@@ -3,30 +3,35 @@ import type { CollectionEntry } from "astro:content";
 import FormattedDate from "../components/FormattedDate.astro";
 import BaseLayout from "./BaseLayout.astro";
 import ProgressMenu from "../components/ProgressMenu.astro";
+import { ChevronsDownUp, ChevronsUpDown } from "@lucide/astro";
+import type { MarkdownHeading } from "astro";
+import Typography from "../components/typography/Typography.astro";
 
-type Props = CollectionEntry<"blog">["data"];
+type Props = { headings: MarkdownHeading[] } & CollectionEntry<"blog">["data"];
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { headings, title, description, pubDate, updatedDate, heroImage } =
+  Astro.props;
 
 let heroBackground =
-  "background: linear-gradient(oklch(var(--a)), oklch(var(--s)));";
+  "background: linear-gradient(var(--color-primary), var(--color-secondary));";
 if (heroImage) {
   heroBackground = `background-image: url(${heroImage.src});`;
 }
 ---
 
 <BaseLayout title={title} description={description}>
-  <div class="progress-wrapper w-full flex justify-center sticky top-0">
+  <!-- <div class="progress-wrapper sticky top-0 flex w-full justify-center">
     <progress
+      x-ref="progress"
       class="progress progress-accent w-full opacity-80"
       value="100"
       max="100"></progress>
-  </div>
+  </div> -->
   <main class="flex flex-col justify-center">
     <div class="hero min-h-[60vh]" style={heroBackground}>
       <div class="hero-overlay bg-opacity-75"></div>
       <div
-        class="hero-content text-center text-base-content md:bg-base-300 md:bg-opacity-90 rounded-md"
+        class="hero-content text-primary-content md:bg-base-300 md:bg-opacity-90 rounded-md text-center"
       >
         <div class="max-w-md">
           <h1 class="mb-5 text-5xl font-bold">{title}</h1>
@@ -42,12 +47,71 @@ if (heroImage) {
         </div>
       </div>
     </div>
-    <article
-      class="prose lg:prose-lg p-8 w-screen max-w-4xl prose-p:text-base-content prose-li:text-base-content mx-auto"
-    >
-      <hr />
+    <article class="prose max-w-4xl p-8 md:mx-auto">
+      <hr id="top" />
       <slot />
     </article>
   </main>
-  <ProgressMenu title={title} />
+  <div class="fab">
+    <!-- a focusable div with tabindex is necessary to work on all browsers. role="button" is necessary for accessibility -->
+    <div tabindex="0" role="button" class="btn btn-lg btn-circle btn-primary">
+      <ChevronsUpDown />
+    </div>
+
+    <!-- close button should not be focusable so it can close the FAB when clicked. It's just a visual placeholder -->
+    <div class="fab-close">
+      <span class="btn btn-circle btn-lg btn-secondary">
+        <ChevronsDownUp />
+      </span>
+    </div>
+
+    <!-- buttons that show up when FAB is open -->
+    {
+      headings.reverse().map((heading) => {
+        const href = `#${heading.slug}`;
+        return (
+          <div>
+            <a href={href} class="btn">
+              <Typography variant="label">{heading.text}</Typography>
+            </a>
+          </div>
+        );
+      })
+    }
+    <div>
+      <a href="#top" class="btn">
+        <Typography variant="label">Return to top</Typography></a
+      >
+    </div>
+  </div>
+
+  <!-- <div class="dropdown dropdown-top fixed right-4 bottom-4 md:right-1/2">
+    <div tabindex="0" role="button" class="group btn btn-primary">
+      <ChevronsUpDown class="group-focus-within:hidden group-focus:hidden" />
+      <ChevronsDownUp
+        class="hidden group-focus-within:block group-focus:block"
+      />
+      <Typography class="hidden md:inline" variant="label">{title}</Typography>
+    </div>
+    <ul
+      tabindex="-1"
+      class="menu dropdown-content bg-base-200 w-fit min-w-44 overflow-hidden rounded-lg p-3 transition-all"
+    >
+      <li>
+        <a href="#top">Return to top</a>
+      </li>
+      {
+        headings.map((heading) => {
+          const href = `#${heading.slug}`;
+          return (
+            <li>
+              <a href={href}>
+                <Typography variant="label">{heading.text}</Typography>
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div> -->
 </BaseLayout>

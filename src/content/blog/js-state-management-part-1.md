@@ -2,6 +2,7 @@
 title: "How to: JavaScript State Management Without Libraries - Part 1"
 description: "How to use local reactive state without a library"
 pubDate: "April 7 2024"
+tags: ["coding"]
 draft: false
 ---
 
@@ -44,13 +45,13 @@ Familiarize yourself if you need to. Astro isn't really that complicated to unde
 Go ahead and add a new page.
 
 ```astro
-<!-- // pages/index.astro -->
 ---
 import Layout from "../layouts/Layout.astro";
 import Counter from "../components/Counter.astro";
 import CounterWatcher from "../components/CounterWatcher.astro";
 ---
 
+<!-- // pages/index.astro -->
 <Layout title="State Management">
   <main>
     <button class="counter">0</button>
@@ -60,7 +61,7 @@ import CounterWatcher from "../components/CounterWatcher.astro";
     function useState<T>(
       initialValue: T,
       afterUpdate: () => void = () => {},
-      beforeUpdate: () => void = () => {}
+      beforeUpdate: () => void = () => {},
     ) {
       let hook = {
         value: initialValue,
@@ -106,7 +107,7 @@ This function creates a JavaScript object called `hook`. Now why did we need an 
 function useState<T>(
   initialValue: T,
   afterUpdate: () => void = () => {},
-  beforeUpdate: () => void = () => {}
+  beforeUpdate: () => void = () => {},
 ) {
   let value = initialValue;
   function set(newValue: T) {
@@ -167,7 +168,7 @@ With our current setup, you're probably thinking to just run the `afterUpdate` c
 function useState<T>(
   initialValue: T,
   afterUpdate: () => void = () => {},
-  beforeUpdate: () => void = () => {}
+  beforeUpdate: () => void = () => {},
 ) {
   let hook = {
     value: initialValue,
@@ -192,7 +193,7 @@ One solution could be that we queue our initial update within the browser microt
 function useState<T>(
   initialValue: T,
   afterUpdate: () => void = () => {},
-  beforeUpdate: () => void = () => {}
+  beforeUpdate: () => void = () => {},
 ) {
   let hook = {
     value: initialValue,
@@ -223,7 +224,7 @@ Here is the final "useState" function you could use to create local reactive sta
 function useState<T>(
   initialValue: T,
   afterUpdate: () => void = () => {},
-  beforeUpdate: () => void = () => {}
+  beforeUpdate: () => void = () => {},
 ) {
   let hook = {
     value: initialValue,
@@ -300,12 +301,12 @@ function hydrateAccordionContainer(container: HTMLDivElement) {
           activeAccordion.value.querySelector(".accordion-content");
         content.style.display = "none";
       }
-    }
+    },
   );
 
   function hydrateAccordion(
     accordion: HTMLDivElement,
-    setActiveAccordion: (accordion: null | HTMLDivElement) => void
+    setActiveAccordion: (accordion: null | HTMLDivElement) => void,
   ) {
     const button = accordion.querySelector("button");
     button.addEventListener("click", () => {

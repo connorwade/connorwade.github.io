@@ -1,12 +1,10 @@
 ---
 import BaseHead from "../../components/BaseHead.astro";
-import Header from "../../components/Header.astro";
-import Footer from "../../components/Footer.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
-import { getCollection } from "astro:content";
 import FormattedDate from "../../components/FormattedDate.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getBlogs, sortBlogs } from "../../utils";
+import Typography from "../../components/typography/Typography.astro";
 
 const posts = await getBlogs();
 const sortedPosts = sortBlogs(posts);
@@ -28,11 +26,17 @@ const sortedPosts = sortBlogs(posts);
     <main>
       <section>
         <ul class="list-none p-4">
+          <li>
+            <Typography variant="title" size="lg">Coding Posts</Typography>
+          </li>
           {
             sortedPosts.map((post) => (
               <li class="group flex gap-4">
                 <FormattedDate date={post.data.pubDate} />
-                <a class="visited:text-primary group-hover:text-secondary" href={`/blog/${post.slug}/`}>
+                <a
+                  class="visited:text-primary group-hover:text-secondary"
+                  href={`/blog/${post.slug}/`}
+                >
                   {post.data.title}
                 </a>
               </li>
@@ -42,5 +46,4 @@ const sortedPosts = sortBlogs(posts);
       </section>
     </main>
   </BaseLayout>
-
 </html>
