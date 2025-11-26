@@ -2,6 +2,7 @@
 title: "How to: JavaScript State Management Without Libraries - Part 1"
 description: "How to use local reactive state without a library"
 pubDate: "April 7 2024"
+tags: ["coding"]
 draft: false
 ---
 

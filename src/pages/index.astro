@@ -1,5 +1,10 @@
 ---
-import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import {
+  SITE_TITLE,
+  SITE_DESCRIPTION,
+  SITE_TAGLINE,
+  SITE_SUBLINE,
+} from "../consts";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ArticleCard from "../components/ArticleCard.astro";
 import { getBlogs, sortBlogs } from "../utils";
@@ -11,12 +16,10 @@ const sortedPosts = sortBlogs(posts);
 
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
   <main class="px-6 py-4">
-    <Typography as="h2" variant="display" class="text-primary mb-2"
-      >I'm not a furry you weirdo</Typography
+    <Typography as="h2" variant="display" class="text-secondary mb-2"
+      >{SITE_TAGLINE}</Typography
     >
-    <Typography as="h5" variant="title" class="mb-4"
-      >I'm an engineer, software developer</Typography
-    >
+    <Typography as="h5" variant="title" class="mb-4">{SITE_SUBLINE}</Typography>
 
     <div
       style="background: linear-gradient(var(--color-primary), var(--color-secondary));"

@@ -4,6 +4,7 @@ heroImage: "../../assets/rendering/perf-trace.png"
 description: "Just a few thoughts about the differences between static, server-side, and client-side rendering"
 pubDate: "Nov 19 2023"
 draft: false
+tags: ["coding"]
 ---
 
 In the world of web development, we are currently spoiled for choice in frameworks. And never before I have witnessed quite so many people choosing to forsake the frameworks and build-systems of the past in favor of rolling their own for their websites. And it's not hard to understand why. Since 2016, React has absolutely dominated the web in one form or another. For all that React does right, it does so much wrong. Whether we like it or not, React pushed the entire web towards client-side rendering (CSR). It didn't help that the next most popular framework, Vue, was also entirely client-side. It really wasn't until Next.js began making waves in 2018 that JavaScript developers started to accept Server-Side Rendering (SSR) yet again. (Though lots of other language developers never left it.) And now, we have frameworks like Sveltekit and Next.js (and many others) that support SSR, CSR, static rendering, and sometimes flipping between all three depending on the page. But do developers really understand what they are committing to when picking a rendering style? Or are we all just building websites with Next.js and Vue because that's what we were told to do?

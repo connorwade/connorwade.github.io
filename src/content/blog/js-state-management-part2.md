@@ -2,6 +2,7 @@
 title: "How to: JavaScript State Management Without Libraries - Part 2"
 description: "How to use state stores or contexts on static websites"
 pubDate: "April 17 2024"
+tags: ["coding"]
 draft: false
 ---
 

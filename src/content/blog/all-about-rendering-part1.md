@@ -3,6 +3,7 @@ title: "JavaScript and Rendering - Part 1"
 description: "Understanding the order of JavaScript execution and browser rendering"
 pubDate: "April 26 2024"
 draft: false
+tags: ["coding"]
 ---
 
 This is an article I've wanted to write for a while now. I haven't ever been too sure how to present it. I've attempted to create tutorials and examples of what I'm talking about, but this is more of a mental model for page performance than an actually practical guide. I'll try my best to make it practical, but hopefully what you really walk away with from this is a new frame of thought to approach problems from.
