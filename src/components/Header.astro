@@ -6,29 +6,48 @@ import Typography from "./typography/Typography.astro";
 import Logo from "../../public/coding_akita.svg";
 ---
 
-<header class="navbar bg-base-200 px-6 shadow-sm">
-  <div class="flex-1">
+<header class="navbar bg-base-100 border-base-300 border-b px-6">
+  <div class="navbar-start">
     <a
       href="/"
       class="hover:text-secondary text-primary flex flex-row items-center gap-2"
     >
       <Logo
-        height={48}
-        width={48}
+        height={36}
+        width={36}
         fill="currentColor"
         class="rounded-full bg-white"
       />
-      <Typography as="h2" variant="display" size="sm" class="hidden md:inline"
-        >CodingAkita</Typography
+      <!-- <Typography
+        as="h2"
+        variant="title"
+        size="md"
+        class="text-base-content inline md:hidden">CodingAkita</Typography
+      > -->
+    </a>
+  </div>
+
+  <div class="navbar-center">
+    <a
+      href="/"
+      class="hover:text-secondary text-base-content flex flex-row items-center gap-2"
+    >
+      <Typography
+        as="h2"
+        variant="headline"
+        size="md"
+        class="text-base-content inline md:hidden">Coding Akita</Typography
       >
-      <Typography as="h2" variant="display" size="sm" class="inline md:hidden"
-        >CA</Typography
+      <Typography as="h2" variant="headline" size="lg" class="hidden md:inline"
+        >Coding Akita</Typography
       >
     </a>
   </div>
 
-  <div class="flex shrink-0 gap-2">
-    <NavMenu links={HEADER_LINKS} />
+  <div class="navbar-end items-center gap-2">
     <ThemeController />
   </div>
 </header>
+<div class="border-base-300 flex flex-row gap-8  border-b px-4">
+  <NavMenu links={HEADER_LINKS} />
+</div>
