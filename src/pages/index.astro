@@ -15,7 +15,7 @@ const sortedPosts = sortBlogs(posts);
 ---
 
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
-  <main class="flex-grow px-6 py-4">
+  <main class="flex-grow md:px-6 md:py-4">
     <!-- <Typography as="h2" variant="display" class="text-secondary mb-2"
       >{SITE_TAGLINE}</Typography
     >
@@ -25,7 +25,7 @@ const sortedPosts = sortBlogs(posts);
       class="flex h-full flex-wrap items-stretch justify-center gap-4 rounded-lg px-4 py-8"
     >
       {
-        sortedPosts.slice(0, 3).map((post) => {
+        sortedPosts.map((post) => {
           return <ArticleCard postData={post.data} postSlug={post.slug} />;
         })
       }
