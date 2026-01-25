@@ -6,6 +6,7 @@ import ProgressMenu from "../components/ProgressMenu.astro";
 import { ChevronsDownUp, ChevronsUpDown } from "@lucide/astro";
 import type { MarkdownHeading } from "astro";
 import Typography from "../components/typography/Typography.astro";
+import AuthorCard from "../components/AuthorCard.astro";
 
 type Props = { headings: MarkdownHeading[] } & CollectionEntry<"blog">["data"];
 
@@ -114,4 +115,5 @@ if (heroImage) {
       }
     </ul>
   </div> -->
+  <AuthorCard />
 </BaseLayout>

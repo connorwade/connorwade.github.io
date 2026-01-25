@@ -44,6 +44,9 @@ importers:
       daisyui:
         specifier: ^5.5.3
         version: 5.5.3
+      simple-icons-astro:
+        specifier: ^16.1.0
+        version: 16.1.0(astro@5.15.6(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.53.2)(typescript@5.9.3)(yaml@2.8.1))
       svelte:
         specifier: ^5.43.6
         version: 5.43.6
@@ -2185,6 +2188,11 @@ packages:
 
   shiki@3.15.0:
     resolution: {integrity: sha512-kLdkY6iV3dYbtPwS9KXU7mjfmDm25f5m0IPNFnaXO7TBPcvbUOY72PYXSuSqDzwp+vlH/d7MXpHlKO/x+QoLXw==}
+
+  simple-icons-astro@16.1.0:
+    resolution: {integrity: sha512-BzkYMmN1J8S2iAzMpNo1NtjNfdleWY7ZY39onZ1EWE7yCfjiOXfEo5zSIhX84OuNFeB/VlmWiEeQy6lc/jHrfQ==}
+    peerDependencies:
+      astro: '>=2.7.1'
 
   sisteransi@1.0.5:
     resolution: {integrity: sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==}
@@ -5105,6 +5113,10 @@ snapshots:
       '@shikijs/types': 3.15.0
       '@shikijs/vscode-textmate': 10.0.2
       '@types/hast': 3.0.4
+
+  simple-icons-astro@16.1.0(astro@5.15.6(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.53.2)(typescript@5.9.3)(yaml@2.8.1)):
+    dependencies:
+      astro: 5.15.6(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.53.2)(typescript@5.9.3)(yaml@2.8.1)
 
   sisteransi@1.0.5: {}
 

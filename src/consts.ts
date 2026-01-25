@@ -5,7 +5,7 @@ export const SITE_TITLE = "Coding Akita";
 export const SITE_DESCRIPTION = "The personal blog of Connor Wade.";
 export const HEADER_LINKS = [
   { content: "Blog", link: "/blog" },
-  { content: "About", link: "/about" },
+  // { content: "About", link: "/about" },
 ];
 export const SITE_TAGLINE = "The Akita codes...";
 export const SITE_SUBLINE = "More than just software, decoding the world";
