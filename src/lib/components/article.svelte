@@ -51,11 +51,14 @@
 
 <!-- Floating Table of Contents / Quick Action Widget -->
 {#if markdownHeadings.length > 0}
-	<aside aria-label="Table of contents widget" class="fixed right-6 bottom-6 z-40">
+	<aside
+		aria-label="Table of contents widget"
+		class="fixed right-6 bottom-6 z-40 flex flex-col items-end"
+	>
 		{#if isOpen}
 			<Card
 				variant="elevated"
-				class="animate-in fade-in slide-in-from-bottom-2 mb-3 flex max-h-[70vh] w-72 flex-col overflow-hidden p-4 duration-150 sm:w-80"
+				class="mb-3 flex max-h-[70vh] w-72 animate-in flex-col overflow-hidden p-4 duration-150 fade-in slide-in-from-bottom-2 sm:w-80"
 			>
 				<div class="mb-3 flex items-center justify-between border-b-2 border-border-subtle pb-2">
 					<span

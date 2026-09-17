@@ -2,7 +2,7 @@
 	import type { Snippet } from 'svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
 
-	type BadgeVariant = 'default' | 'primary' | 'accent' | 'outline';
+	export type BadgeVariant = 'default' | 'primary' | 'accent' | 'outline';
 	type BadgeSize = 'sm' | 'md';
 
 	let {
@@ -20,7 +20,8 @@
 
 	const variantClasses: Record<BadgeVariant, string> = {
 		default: 'border border-border bg-surface-muted text-foreground',
-		primary: 'border border-primary-hover bg-primary-subtle text-primary-subtle-foreground font-bold',
+		primary:
+			'border border-primary-hover bg-primary-subtle text-primary-subtle-foreground font-bold',
 		accent: 'border border-accent-hover bg-accent-subtle text-accent-subtle-foreground font-bold',
 		outline: 'border border-border bg-transparent text-foreground'
 	};
@@ -34,7 +35,7 @@
 <span
 	{...restProps}
 	class={[
-		'inline-flex items-center gap-1.5 font-mono font-semibold uppercase tracking-wider select-none shrink-0',
+		'inline-flex shrink-0 items-center gap-1.5 font-mono font-semibold tracking-wider uppercase select-none',
 		variantClasses[variant],
 		sizeClasses[size],
 		className

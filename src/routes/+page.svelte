@@ -6,6 +6,26 @@
 	import ArrowRight from '@lucide/svelte/icons/arrow-right';
 	import BookOpen from '@lucide/svelte/icons/book-open';
 	import Sparkles from '@lucide/svelte/icons/sparkles';
+	import { headlineStatus, headlineTitle, tagline } from '$lib/consts';
+	import { SvelteSet } from 'svelte/reactivity';
+	import type { BadgeVariant } from '$lib/components/ui/badge.svelte';
+
+	const postsMetadata = await getPostsMetadata();
+	const headTags = new SvelteSet();
+
+	for (const post of postsMetadata) {
+		if (post.tags === undefined) continue;
+		for (const tag of post.tags) {
+			headTags.add(tag);
+		}
+	}
+
+	const badgeTagColorMap = new Map<number, BadgeVariant>([
+		[0, 'primary'],
+		[1, 'accent'],
+		[2, 'default'],
+		[3, 'outline']
+	]);
 </script>
 
 <div class="space-y-16 py-4 sm:py-8">
@@ -18,28 +38,25 @@
 
 		<div class="relative z-10 max-w-3xl space-y-6">
 			<!-- Live Status Indicator -->
-			<StatusPill>Available for engineering & writing</StatusPill>
+			<StatusPill>{headlineStatus}</StatusPill>
 
 			<!-- Main Display Headline -->
 			<h1
 				class="font-serif text-3xl leading-[1.15] font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl"
 			>
-				Crafting resilient web apps with precision & simplicity.
+				{headlineTitle}
 			</h1>
 
 			<!-- Intro Description -->
 			<p class="max-w-2xl font-serif text-base leading-relaxed text-muted sm:text-xl">
-				Hi, I'm <strong class="font-bold text-foreground">Connor Wade</strong>. I write in-depth
-				essays on frontend performance, state management, Svelte, and modern engineering
-				architecture.
+				{tagline}
 			</p>
 
 			<!-- Skill Highlight Badges -->
 			<div class="flex flex-wrap gap-2 pt-2">
-				<Badge variant="primary">SvelteKit 5</Badge>
-				<Badge variant="default">TypeScript</Badge>
-				<Badge variant="accent">UI Architecture</Badge>
-				<Badge variant="default">Performance</Badge>
+				{#each headTags as tag, i (tag)}
+					<Badge variant={badgeTagColorMap.get(i)}>{tag}</Badge>
+				{/each}
 			</div>
 
 			<!-- Action Buttons -->

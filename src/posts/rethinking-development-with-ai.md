@@ -3,6 +3,7 @@ title: Rethinking Software Development with AI
 description: What everyone is missing about the implications of AI on the software development process
 pubDate: 01-25-2026
 draft: false
+tags: ['AI']
 ---
 
 I originally went to school for mechanical engineering. As a result, I have a lot of friends who are now professional mechanical engineers. And when I talk to them about their jobs, it becomes obvious just how weird software engineering is. Most of my friends don't really do any low-level work. They don't make things with their hands at their jobs and they rarely even see the finished products. They may work completely abstract with another company being hired to do the hands-on work while they think of big picture stuff.

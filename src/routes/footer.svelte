@@ -1,22 +1,23 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
 	import Logo from '$lib/components/logo.svelte';
-	import { Button } from '$lib/components/ui';
-	import Copy from '@lucide/svelte/icons/copy';
-	import Check from '@lucide/svelte/icons/check';
+	// import { Button } from '$lib/components/ui';
+	// import Copy from '@lucide/svelte/icons/copy';
+	// import Check from '@lucide/svelte/icons/check';
+	import { footerLine } from '$lib/consts';
 
-	let copied = $state(false);
-	const EMAIL = 'connor@codingakita.dev';
+	// let copied = $state(false);
+	// const EMAIL = 'connor@codingakita.dev';
 
-	const copyEmail = async () => {
-		try {
-			await navigator.clipboard.writeText(EMAIL);
-			copied = true;
-			setTimeout(() => {
-				copied = false;
-			}, 2000);
-		} catch (_) {}
-	};
+	// const copyEmail = async () => {
+	// 	try {
+	// 		await navigator.clipboard.writeText(EMAIL);
+	// 		copied = true;
+	// 		setTimeout(() => {
+	// 			copied = false;
+	// 		}, 2000);
+	// 	} catch (_) {}
+	// };
 </script>
 
 <footer class="mt-auto border-t-2 border-border bg-surface-muted/60 px-4 pt-12 pb-8 sm:px-8">
@@ -35,8 +36,7 @@
 					</span>
 				</div>
 				<p class="max-w-md font-serif text-base leading-relaxed text-muted">
-					Exploring web engineering, reactive UI architectures, and modern software craftsmanship
-					with a Japandi neo-brutalist aesthetic.
+					{footerLine}
 				</p>
 
 				<!-- Quick Email Copy -->

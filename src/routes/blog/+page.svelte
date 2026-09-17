@@ -2,6 +2,8 @@
 	import ArticleCard from '../article-card.svelte';
 	import { Input, Button, SectionHeader, Card } from '$lib/components/ui';
 	import Search from '@lucide/svelte/icons/search';
+	import { SvelteSet } from 'svelte/reactivity';
+	import { blogEyebrow } from '$lib/consts.js';
 
 	let { data } = $props();
 
@@ -10,7 +12,7 @@
 
 	// Extract unique tags
 	let allTags = $derived.by(() => {
-		const tagsSet = new Set<string>();
+		const tagsSet = new SvelteSet<string>();
 		data.posts.forEach((post) => {
 			post.tags?.forEach((t) => tagsSet.add(t));
 		});
@@ -38,9 +40,9 @@
 <div class="space-y-10 py-4 sm:py-8">
 	<!-- Page Header -->
 	<SectionHeader
-		eyebrow="Writing & Architecture"
+		eyebrow={blogEyebrow}
 		title="Essays & Notes"
-		description="Deep dives into software architecture, frontend performance optimizations, Svelte reactivity, and practical engineering solutions."
+		description="Deep dives into software architecture, AI, and practical engineering solutions"
 	/>
 
 	<!-- Search & Filters Toolbar -->
