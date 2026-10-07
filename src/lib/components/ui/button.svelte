@@ -39,8 +39,7 @@
 			'border-2 border-border bg-accent text-accent-foreground shadow-brutal hover:bg-accent-hover hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-brutal-lg active:translate-x-0 active:translate-y-0 active:shadow-none',
 		outline:
 			'border-2 border-border bg-transparent text-foreground hover:bg-surface-muted shadow-brutal-sm hover:shadow-brutal active:translate-x-0 active:translate-y-0 active:shadow-none',
-		ghost:
-			'border border-transparent text-foreground hover:border-border hover:bg-surface-muted'
+		ghost: 'border border-transparent text-foreground hover:border-border hover:bg-surface-muted'
 	};
 
 	const sizeClasses: Record<ButtonSize, string> = {

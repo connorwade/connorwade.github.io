@@ -17,7 +17,7 @@
 	} & HTMLInputAttributes = $props();
 </script>
 
-<div class={['relative flex items-center w-full', className]}>
+<div class={['relative flex w-full items-center', className]}>
 	{#if leadingIcon}
 		<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-muted">
 			{@render leadingIcon()}
@@ -28,7 +28,7 @@
 		{...restProps}
 		bind:value
 		class={[
-			'w-full border-2 border-border bg-surface text-foreground placeholder:text-muted-foreground font-mono text-xs sm:text-sm py-2 shadow-brutal-sm focus:outline-none focus:ring-2 focus:ring-primary focus:shadow-brutal transition-all',
+			'w-full border-2 border-border bg-surface py-2 font-mono text-xs text-foreground shadow-brutal-sm transition-all placeholder:text-muted-foreground focus:shadow-brutal focus:ring-2 focus:ring-primary focus:outline-none sm:text-sm',
 			leadingIcon ? 'pl-10' : 'pl-3',
 			allowClear && value ? 'pr-9' : 'pr-3'
 		]}
@@ -38,7 +38,7 @@
 		<button
 			type="button"
 			aria-label="Clear input"
-			class="absolute inset-y-0 right-0 flex items-center pr-3 text-muted hover:text-foreground cursor-pointer transition-colors"
+			class="absolute inset-y-0 right-0 flex cursor-pointer items-center pr-3 text-muted transition-colors hover:text-foreground"
 			onclick={() => (value = '')}
 		>
 			<X class="size-4" />

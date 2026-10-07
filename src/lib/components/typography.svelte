@@ -21,9 +21,11 @@
 	this={as}
 	class={[
 		{
-			'font-serif text-display-lg font-normal tracking-tight': variant === 'display' && size === 'lg',
+			'font-serif text-display-lg font-normal tracking-tight':
+				variant === 'display' && size === 'lg',
 			'font-serif text-display font-normal tracking-tight': variant === 'display' && size === 'md',
-			'font-serif text-display-sm font-normal tracking-tight': variant === 'display' && size === 'sm',
+			'font-serif text-display-sm font-normal tracking-tight':
+				variant === 'display' && size === 'sm',
 
 			'font-serif text-headline-lg font-normal': variant === 'headline' && size === 'lg',
 			'font-serif text-headline font-normal': variant === 'headline' && size === 'md',
@@ -37,9 +39,9 @@
 			'font-serif text-body': variant === 'body' && size === 'md',
 			'font-serif text-body-sm': variant === 'body' && size === 'sm',
 
-			'font-mono text-label-lg uppercase tracking-wider': variant === 'label' && size === 'lg',
-			'font-mono text-label uppercase tracking-wider': variant === 'label' && size === 'md',
-			'font-mono text-label-sm uppercase tracking-wider': variant === 'label' && size === 'sm'
+			'font-mono text-label-lg tracking-wider uppercase': variant === 'label' && size === 'lg',
+			'font-mono text-label tracking-wider uppercase': variant === 'label' && size === 'md',
+			'font-mono text-label-sm tracking-wider uppercase': variant === 'label' && size === 'sm'
 		},
 		className
 	]}

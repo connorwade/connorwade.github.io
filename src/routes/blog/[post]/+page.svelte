@@ -37,7 +37,7 @@
 	<meta property="twitter:description" content={description} />
 </svelte:head>
 
-<div class="py-4 sm:py-6 max-w-4xl mx-auto">
+<div class="mx-auto max-w-4xl py-4 sm:py-6">
 	<BlogHeader
 		title={data.metadata.title}
 		description={data.metadata.description}

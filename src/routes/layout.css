@@ -80,6 +80,28 @@
 	--accent-foreground: #faf8f5;
 	--accent-subtle: #fce8e2;
 	--accent-subtle-foreground: #b8583b;
+
+	/* LayerChart Theme Tokens */
+	--color-primary: var(--primary);
+	--color-secondary: var(--accent);
+	--color-surface-100: var(--surface);
+	--color-surface-200: var(--surface-muted);
+	--color-surface-300: var(--surface-muted);
+	--color-surface-content: var(--foreground);
+}
+
+.lc-root-container {
+	/* Default marks color when not using explicit color or color scale */
+	--color-primary: var(--primary);
+	--color-secondary: var(--accent);
+
+	/* Progressively darker shades representing surfaces (backgrounds). */
+	--color-surface-100: var(--surface);
+	--color-surface-200: var(--surface-muted);
+	--color-surface-300: var(--primary-subtle);
+
+	/* Content (text) color */
+	--color-surface-content: var(--foreground);
 }
 
 .dark {
@@ -112,6 +134,14 @@
 	--accent-foreground: #faf8f5;
 	--accent-subtle: #3f1d15;
 	--accent-subtle-foreground: #e08064;
+
+	/* LayerChart Theme Tokens */
+	--color-primary: var(--primary);
+	--color-secondary: var(--accent);
+	--color-surface-100: var(--surface);
+	--color-surface-200: var(--surface-muted);
+	--color-surface-300: var(--surface-muted);
+	--color-surface-content: var(--foreground);
 }
 
 @theme {
@@ -145,6 +175,12 @@
 	--color-accent-foreground: var(--accent-foreground);
 	--color-accent-subtle: var(--accent-subtle);
 	--color-accent-subtle-foreground: var(--accent-subtle-foreground);
+
+	--color-secondary: var(--accent);
+	--color-secondary-hover: var(--accent-hover);
+	--color-secondary-foreground: var(--accent-foreground);
+	--color-secondary-subtle: var(--accent-subtle);
+	--color-secondary-subtle-foreground: var(--accent-subtle-foreground);
 
 	/* Semantic Neo-Brutalist Box Shadows */
 	--shadow-brutal-xs: 1px 1px 0px 0px var(--shadow-color);

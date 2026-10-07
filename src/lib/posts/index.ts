@@ -6,10 +6,24 @@ export * from './posts.remote';
 export * from './types';
 
 export const getPost = async (slug: string) => {
-	const raw: {
-		default: unknown;
+	const modules = import.meta.glob<{
+		default: Component;
 		metadata: unknown;
-	} = await import(`$posts/${slug}.md`);
+	}>('$posts/*.{md,svx}');
+
+	const matchingPath = Object.keys(modules).find((path) => {
+		const fileSlug = path
+			.split('/')
+			.pop()
+			?.replace(/\.(md|svx)$/, '');
+		return fileSlug === slug;
+	});
+
+	if (!matchingPath || !modules[matchingPath]) {
+		throw new Error(`Post not found: ${slug}`);
+	}
+
+	const raw = await modules[matchingPath]();
 
 	let result;
 	try {
@@ -21,6 +35,6 @@ export const getPost = async (slug: string) => {
 
 	return {
 		metadata: result,
-		PostContent: raw.default as Component
+		PostContent: raw.default
 	};
 };
