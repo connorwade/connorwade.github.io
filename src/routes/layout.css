@@ -295,3 +295,12 @@
 		background: var(--primary);
 	}
 }
+
+/* Ensure code inside pre blocks has no background or border */
+article pre code,
+.prose pre code {
+	background-color: transparent !important;
+	border: none !important;
+	padding: 0 !important;
+	box-shadow: none !important;
+}

@@ -1,5 +1,6 @@
 import type { Component } from 'svelte';
 import { zPostFrontmatter } from './types';
+import { resolveHeroImageModule } from './posts';
 
 export * from './posts';
 export * from './posts.remote';
@@ -33,8 +34,13 @@ export const getPost = async (slug: string) => {
 		throw new Error(`Error parsing post ${slug}`, { cause: err });
 	}
 
+	const heroImageModule = result.heroImage
+		? await resolveHeroImageModule(result.heroImage)
+		: undefined;
+
 	return {
 		metadata: result,
-		PostContent: raw.default
+		PostContent: raw.default,
+		heroImageModule
 	};
 };

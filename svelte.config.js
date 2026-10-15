@@ -7,7 +7,18 @@ import { createHighlighter } from 'shiki';
 const theme = 'material-theme';
 const highlighter = await createHighlighter({
 	themes: [theme],
-	langs: ['javascript', 'typescript', 'html', 'css', 'svelte', 'astro', 'jsx', 'bash']
+	langs: [
+		'javascript',
+		'typescript',
+		'html',
+		'css',
+		'svelte',
+		'astro',
+		'jsx',
+		'bash',
+		'json',
+		'yaml'
+	]
 });
 
 /** @type {import('@sveltejs/kit').Config} */

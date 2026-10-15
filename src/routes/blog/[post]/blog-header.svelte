@@ -6,13 +6,15 @@
 	import Calendar from '@lucide/svelte/icons/calendar';
 
 	let {
+		heroImage,
 		title,
 		description,
 		pubDate,
 		updatedDate,
 		tags = []
 	}: {
-		heroImage?: string;
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		heroImage?: any;
 		title: string;
 		description: string;
 		pubDate: Date;
@@ -67,4 +69,10 @@
 			</div>
 		{/if}
 	</div>
+
+	{#if heroImage}
+		<div class="overflow-hidden border-2 border-border shadow-brutal-sm">
+			<enhanced:img src={heroImage} alt={title} class="max-h-120 w-full object-cover" />
+		</div>
+	{/if}
 </Card>

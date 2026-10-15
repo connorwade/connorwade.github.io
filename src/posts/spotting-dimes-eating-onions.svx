@@ -4,6 +4,7 @@ description: LLM's do some pretty incredible stuff for still being so dumb.
 pubDate: 10-14-2026
 draft: false
 tags: ['AI']
+heroImage: '$lib/assets/blog/spotting-dimes-eating-onions/hero.jpg'
 ---
 
 The speed increase that LLM's have brought to writing code is a complete game changer for software development. I cannot justify typing code with my hands at work when I can pass a few crafted prompts to my agent and have it spit out roughly what I want. I get 80% of the results and I probably only did 20% of the work I used to.

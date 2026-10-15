@@ -40,10 +40,13 @@
 		prose-a:font-semibold prose-a:text-primary-hover
 		prose-a:underline hover:prose-a:text-primary prose-blockquote:border-l-4 prose-blockquote:border-primary
 		prose-blockquote:bg-surface-muted/50
-		prose-blockquote:p-4 prose-blockquote:italic prose-strong:text-foreground prose-code:border prose-code:border-border-subtle
-		prose-code:bg-surface-muted prose-code:px-1.5 prose-code:py-0.5 prose-code:font-mono prose-code:text-xs prose-code:sm:text-sm prose-pre:rounded-none prose-pre:border-2
-		prose-pre:border-border prose-pre:shadow-brutal prose-li:font-serif prose-li:text-muted
-		prose-img:border-2 prose-img:border-border prose-img:shadow-brutal"
+		prose-blockquote:p-4 prose-blockquote:italic prose-strong:text-foreground
+		prose-code:font-mono prose-code:text-xs prose-code:sm:text-sm
+		prose-pre:rounded-none prose-pre:border-2
+		prose-pre:border-border prose-pre:shadow-brutal prose-li:font-serif
+		prose-li:text-muted prose-img:border-2
+		prose-img:border-border prose-img:shadow-brutal [&_:not(pre)>code]:border [&_:not(pre)>code]:border-border-subtle
+		[&_:not(pre)>code]:bg-surface-muted [&_:not(pre)>code]:px-1.5 [&_:not(pre)>code]:py-0.5"
 >
 	<hr id="top" class="my-2 border-none" />
 	{@render children()}

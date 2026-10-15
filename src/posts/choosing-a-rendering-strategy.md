@@ -1,6 +1,5 @@
 ---
 title: 'Choosing a Rendering Strategy for Your Website'
-heroImage: '../../assets/rendering/perf-trace.png'
 description: 'Just a few thoughts about the differences between static, server-side, and client-side rendering'
 pubDate: 'Nov 19 2023'
 draft: false
