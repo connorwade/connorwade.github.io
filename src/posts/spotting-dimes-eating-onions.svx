@@ -1,0 +1,106 @@
+---
+title: The Spotting Dimes and Eating Onions Paradox
+description: LLM's do some pretty incredible stuff for still being so dumb.
+pubDate: 10-14-2026
+draft: false
+tags: ['AI']
+heroImage: '$lib/assets/blog/spotting-dimes-eating-onions/hero.jpg'
+---
+
+The speed increase that LLM's have brought to writing code is a complete game changer for software development. I cannot justify typing code with my hands at work when I can pass a few crafted prompts to my agent and have it spit out roughly what I want. I get 80% of the results and I probably only did 20% of the work I used to.
+
+As an empiricist, you cannot tell me that LLM's aren't useful. We can see in the real world that they are useful. Frontier models can solve Navier-Stokes, speed up cancer treatment, and decompile software. You cannot seriously look at LLM's as they are today and conclude that they are a toy or a "chat bot that gets everything wrong".
+
+However, literally just today I had to deal with the "frontier model" from the big coding LLM lab change stateful variables to `const`. I had to step in and say, "Hey, that isn't going to work. A stateful variable by definition cannot be constant." Another time, it created a layout for a page, but didn't include a page. Therefore, nothing rendered. And then most recently it tried to bind to an HTML form element across a component and async boundary meaning that the form would almost assuredly not exist before the component mounted or unmounted. Thus it crashed and was caught by our users. I doubt that the model that I code with is the same that assists researchers in making vaccines, but you can still see the dichotomy of the situation.
+
+There's this friction between the ideas that a tool can be useful, but not be intelligent.
+
+I like to call this problem with LLM's ["The Spotting Dimes and Eating Onions Paradox".](https://www.youtube.com/watch?v=-WCeQ6rBpyA)
+
+## I still believe that LLM's are not true intelligence
+
+I'm not going to lie, sometimes I write posts and think, "This will age poorly someday." And while that still may come to pass, it hasn't this time.
+
+It has been 10 months since I wrote my post about how I do not see LLM's as being intelligent. In that time, we've had quite a bit of very cool things happen in the world of AI.
+
+And yet, I still don't see any of them as intelligent, especially once you go down the rabbit hole of how achievements were made.
+
+A lot of AI medical breakthroughs have happened through the parsing of literature. We print hundreds and maybe thousands of research papers every year and then have to wait for experts to get through all of the research. LLM's can do that in mere seconds and they also are built to inherently connect ideas together. These AI breakthroughs are really great, but also not really original work. If anything they reflect just how bad the current state of scientific literature really is.
+
+A lot of other AI breakthroughs have mostly been through the power of swarming and compute. OpenAI said it was something like 7,000 agents working on Navier-Stokes for months. It was estimated to cost tens of millions of dollars. Also the agents basically made and proved out all the counter examples to Navier-Stokes. So elimination is technically solving, but if we gave a researcher tens of millions of dollars and warehouses full of GPUs for modeling, I do wonder if they could've just done it?
+
+*Since I've been working on this article there's also been a slight controversy that the "natural language" solution doesn't match the Lean proof. The LLM incorrectly described how the proof works. Yet another great example of an LLM eating onions while it spots dimes.*
+
+ These problems were solved by getting around human caused issues. Our unwillingness to fund the sciences (and instead put that money in the hands of corporations), the way we present science, and the incentives we give for people to do remarkable things for us.
+
+We humans are also not capable of doing things non-stop without complaint. Humans tend to not want to work 24 hours a day despite what your CEO read about China in Bloomberg.
+
+All of these breakthroughs are incredible and the sign of a useful technology. However, not a single one signals true intelligence to me.
+
+## Benchmarks
+
+If I take a quick peek at LLM benchmarks for some of the frontier models they score about 60%-90% on coding tests. These are some of the best models in the industry that programmers work with every single day. By every celebratory marketing line, they are factually  - and 'deadass' - wrong anywhere between 10% and 40% of the time.
+
+And that is just for flat out incorrect answers. There is no evaluation of code, performance, or other outcomes. The evaluations are often just fuzzy pass/fail. There's some slight nuance and edge case catching, but not really that much. So 10% to 40% of answers are flat-out wrong, but you have no evaluation of continued work over years or the ability to serve customers.
+
+So the very best, highest cost frontier models make mistakes 10% to 40% of the time. How well do you think your corporate budgeted agent does when being routed during high traffic periods?
+
+### Can Benchmarks even be trusted?
+
+Benchmarks are also pretty questionable. Allegedly, LLM's swarms have been found across the open internet communicating with one another to share answers to evaluation tests.
+
+Prolifically, an OpenAI security incident disclosed that an agent breached containment to find the answer key to an evaluation it was doing and attempted to cover it up. Many people focused on the fact that an agent broke containment and not on why it did.
+
+*Possibly because I've seen a lot of people stating incorrectly that the incident occurred because OpenAI tasked the LLM with breaching the other site. It was not. It was being evaluated on the CyberGym benchmark: https://www.cybergym.io/cybergym/. It decided that the best way to do well on the benchmark was not to do the test and instead find the answer key instead.*
+
+And which models have the most access to compute in order to swarm the web? And which models often do the best in benchmarking?
+
+I don't think anyone in benchmarking nor AI development is trying to deceive the public. I just don't know how much I trust in benchmarking. I do see LLM's succeed at many tasks every day and I see them get better over time, so them performing better over time seems reasonable to me. Benchmarks are probably more accurate than they are precise.
+
+Not sure if benchmarks really say too much right now anyways. They are a very um... *interesting* accepted form of understanding LLM performance. I'm not sure that evaluation with completely set boundaries is what we should be testing anymore.
+
+Honestly, I almost think we should start treating LLM benchmarks more like drug trials. Give 10,000 random people Astra and give 10,000 random people Opus 5.5. Have them all work through 10 tasks. Then record that outcome. That benchmark would be way more interesting to me.
+
+I know that they benchmark because they only care about AGI and need something to show investors. But if they actually cared about how LLM's will probably be used, they should just be benchmarking by testing it with thousands of random people.
+
+And you need thousands of trials because...
+## The Nature of LLM's are Random and Context Dependent
+
+I can't tell you how many times I see a comment thread of two people discussing LLM's and one person says they ran an experiment and got answer A. And then the next person replies and says they ran the same experiment and got answer B. Both of these people then spend 5 more replies each complaining that the other person doesn't know how to work AI and they use the wrong models and etc.
+
+I'm sure both people are just as bad at running LLM's as anyone else. There's no correct reason for why someone got result A and someone else got result B from a singular prompt. LLM's are somewhat random. The randomness of an LLM is well-recorded parameter of LLM models. (It is called "temperature" for those who wish to know.) You can't put it them at 0 randomness because that destroys the ability of them to reason and create solutions.
+
+The beauty of randomness and frequency is that humans suck at understanding it. It could be true that your LLM is correct 100% of the time in all tasks.
+
+It could also be true that every time a very frustrated software engineer opens Claude Code, it deletes every file in every codebase.
+
+You don't just get 90% accuracy. You experience some fraction of accuracy that is random. Your singular experience is a rounding error. Your experience with LLM's could be that they are wrong 40% of the time while company-wide LLM's are only wrong 10% of the time.
+
+And to add to that, there's individual contexts with every LLM that effects how the LLM actually works. If one person uses the official React skills when creating a React app and another person doesn't, I'd wager a guess that the person using React skills is going to have the stronger app.
+
+A person might be naturally better at prompting because they use more precise language naturally. Another person might really suck at prompting, but they are extremely organized and have all the context an LLM needs to complete a task. Another person might be a really strong coder and therefore can make examples and patterns that the LLM can follow.
+
+(Ideally all three of these people would work together, but corporations currently separate all three. Then all three get their own LLM to run and the outcomes are weaker because there's no respect for the organization of work in this world anymore.)
+
+There's so many places where you in particular might just draw the short stick. Your LLM might just sit in the corner eating onions all day and then the next day it finds gold bars out in fields.
+
+## What LLM's are good for and what they aren't
+
+At the end of the day, LLM's are a tool. They aren't a tool you can ignore either. But in my opinion, thinking of LLM's more like a tool (and not like a machine that takes your dumbest thoughts and spins gold), makes you better at operating LLM's.
+
+The person who understands what an LLM is and what it isn't thinks more deeply when prompting. They ask for the right things, they use precise language, they know what context is needed, and they reduce the amount of solutions the LLM needs to generate on its own.
+
+There currently are a million different ideas of how to prompt LLM's so I really can't tell you exactly what to do beyond just broad strokes.
+
+If at the end of the day you don't write any more code (or do whatever job it is that you do), at least do the basics with the LLM:
+
+1. Always research the solution either with the AI or by yourself. Before you can create the prompt you need, you have to understand what it is you're asking for.
+2. Write down what "done" means. Do not leave this step to the AI even if it is very tempting. Always set the goal for what you want to accomplish. Do not just write to the AI to tell it something doesn't work. Tell it what is expected.
+3. Compile the patterns you need for context resolution. Always make sure that the AI sources good patterns.
+4. Plan the tasks with your AI once you have all of this in place.
+5. Perform a human led retro with the AI. I don't care if you don't read the code, but you need to still go over with the AI what it did right and what it did wrong. And then you need to figure out what you did wrong vs what the AI did wrong.
+6. After the retro, strengthen the AI workflow by implementing changes relevant to what would improve the task flow.
+
+I don't consider LLM's to be intelligent. I have seen their failures first-hand. However, that doesn't stop them from being useful tools.
+
+Just don't let them trick you into thinking your girlfriend was kissing your cousin.

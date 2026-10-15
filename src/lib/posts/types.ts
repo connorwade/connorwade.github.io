@@ -5,7 +5,8 @@ export const zPostFrontmatter = z.object({
 	description: z.string(),
 	pubDate: z.string().transform((str) => new Date(str)),
 	draft: z.boolean().optional(),
-	tags: z.array(z.string()).optional()
+	tags: z.array(z.string()).optional(),
+	heroImage: z.string().optional()
 });
 
 export const zPostMetadata = zPostFrontmatter.extend({ slug: z.string() });

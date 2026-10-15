@@ -43,7 +43,7 @@
 pre-commit:
   parallel: false
   jobs:
-    - run: pnpx prettier --write {staged_files}
-    - run: pnpx prettier --check {staged_files}
+    - run: pnpx prettier --ignore-unknown --write {staged_files}
+    - run: pnpx prettier --ignore-unknown --check {staged_files}
     - run: pnpx eslint {staged_files}
     - run: pnpx svelte-check sync && pnpx svelte-check --tsconfig ./tsconfig.json

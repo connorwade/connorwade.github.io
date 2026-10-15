@@ -18,21 +18,21 @@
 
 <div
 	class={[
-		'flex flex-col md:flex-row md:items-end justify-between gap-4 border-b-2 border-border-subtle pb-4',
+		'flex flex-col justify-between gap-4 border-b-2 border-border-subtle pb-4 md:flex-row md:items-end',
 		className
 	]}
 >
 	<div class="space-y-1">
 		{#if eyebrow}
-			<span class="font-mono text-xs font-bold uppercase tracking-widest text-primary-hover block">
+			<span class="block font-mono text-xs font-bold tracking-widest text-primary-hover uppercase">
 				{eyebrow}
 			</span>
 		{/if}
-		<h2 class="font-serif text-2xl sm:text-4xl font-bold tracking-tight text-foreground">
+		<h2 class="font-serif text-2xl font-bold tracking-tight text-foreground sm:text-4xl">
 			{title}
 		</h2>
 		{#if description}
-			<p class="font-serif text-muted text-sm sm:text-base max-w-2xl leading-relaxed pt-1">
+			<p class="max-w-2xl pt-1 font-serif text-sm leading-relaxed text-muted sm:text-base">
 				{description}
 			</p>
 		{/if}

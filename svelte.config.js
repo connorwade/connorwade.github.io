@@ -7,14 +7,26 @@ import { createHighlighter } from 'shiki';
 const theme = 'material-theme';
 const highlighter = await createHighlighter({
 	themes: [theme],
-	langs: ['javascript', 'typescript', 'html', 'css', 'svelte', 'astro', 'jsx', 'bash']
+	langs: [
+		'javascript',
+		'typescript',
+		'html',
+		'css',
+		'svelte',
+		'astro',
+		'jsx',
+		'bash',
+		'json',
+		'yaml'
+	]
 });
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	compilerOptions: {
 		// Force runes mode for the project, except for libraries. Can be removed in svelte 6.
-		runes: ({ filename }) => (filename.split(/[/\\\\]/).includes('node_modules') ? undefined : true),
+		runes: ({ filename }) =>
+			filename.split(/[/\\\\]/).includes('node_modules') ? undefined : true,
 		experimental: {
 			async: true
 		}

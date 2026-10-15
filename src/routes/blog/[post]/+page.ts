@@ -13,6 +13,7 @@ export const load = async ({ params }) => {
 		return {
 			metadata: post.metadata,
 			PostContent: post.PostContent,
+			heroImageModule: post.heroImageModule,
 			title: post.metadata.title
 		};
 	} catch (err) {

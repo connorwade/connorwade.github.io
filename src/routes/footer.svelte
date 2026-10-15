@@ -105,7 +105,6 @@
 			class="flex flex-col items-center justify-between gap-4 border-t border-border-subtle pt-6 font-mono text-xs text-muted sm:flex-row"
 		>
 			<span>© {new Date().getFullYear()} Connor Wade. All rights reserved.</span>
-			<span class="text-xs">Built with SvelteKit & Tailwind CSS</span>
 		</div>
 	</div>
 </footer>
